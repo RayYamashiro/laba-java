@@ -17,7 +17,7 @@ public class Herbivores extends Animals
         setAnim_name("Ivan");
         setAnim_size(12);
     }
-    public void addEdiblePlant (Trees a)
+    public void addEdiblePlant (Plants a) // можно писать вместо trees plants так как он является суперклассом для дерева
     {
         edible.add(a.getPlant_name());
     }
