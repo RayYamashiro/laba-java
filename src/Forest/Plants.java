@@ -2,7 +2,17 @@ package Forest;
 
 import java.util.ArrayList;
 
-public class Plants
+public abstract class Plants
 {
-    String plant_name;
+    private String plant_name;
+
+    public void setPlant_name(String name)
+    {
+        this.plant_name = name;
+    }
+    public String getPlant_name()
+    {
+        return plant_name;
+    }
+
 }

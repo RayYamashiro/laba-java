@@ -4,10 +4,10 @@ public class Trees extends Plants
 {
     public Trees()
     {
-        plant_name = "Tolyan";
+        setPlant_name("Tolyan");
     }
     public Trees(String name)
     {
-        this.plant_name = name;
+        setPlant_name(name);
     }
 }

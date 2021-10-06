@@ -9,26 +9,26 @@ public class Herbivores extends Animals
 
     public Herbivores(String name , double size)
     {
-        this.anim_name = name;
-        this.anim_size = size;
+        setAnim_name(name);
+        setAnim_size(size);
     }
     public Herbivores()
     {
-        anim_size = 12;
-        anim_name = "Ivan";
+        setAnim_name("Ivan");
+        setAnim_size(12);
     }
     public void addEdiblePlant (Trees a)
     {
-        edible.add(a.plant_name);
+        edible.add(a.getPlant_name());
     }
     public void addNonEdiblePlant (Trees a )
     {
-        non_edible.add(a.plant_name);
+        non_edible.add(a.getPlant_name());
     }
 
     public void checkEdibilityPlant (Trees a)
     {
-        if(edible.contains(a.plant_name) == true)
+        if(edible.contains(a.getPlant_name()) == true)
         {
             System.out.println("Растение съедобное");
             System.out.println("Происходит уничтожение растения");
@@ -40,16 +40,16 @@ public class Herbivores extends Animals
 
     public void addEdiblePlant (Grass a )
     {
-        edible.add(a.plant_name);
+        edible.add(a.getPlant_name());
     }
     public void addNonEdiblePlant (Grass a )
     {
-        non_edible.add(a.plant_name);
+        non_edible.add(a.getPlant_name());
     }
 
     public void checkEdibilityPlant (Grass a)
     {
-        if(edible.contains(a.plant_name) == true)
+        if(edible.contains(a.getPlant_name()) == true)
         {
             System.out.println("Растение съедобное");
             System.out.println("Происходит уничтожение растения");

@@ -4,17 +4,17 @@ public class Predators extends Animals
 {
     public Predators()
     {
-        anim_name = "Vasyan" ;
-        anim_size = 15;
+        setAnim_name("Vasyan");
+        setAnim_size(15);
     }
     public Predators(String name , double size)
     {
-        this.anim_size = size;
-        this.anim_name = name;
+        setAnim_name(name);
+        setAnim_size(size);
     }
     public void anihilationAnimals (Predators a , Herbivores b)
     {
-        if(a.anim_size > b.anim_size)
+        if(a.getAnim_size() > b.getAnim_size())
         {
             b = null;
             System.out.println("Произошло уничтожение травоядного.");
