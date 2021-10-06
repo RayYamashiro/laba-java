@@ -11,6 +11,9 @@ public class Program
 
         Forest.Herbivores a = new Forest.Herbivores("fff" , 12);
         Predators b = new Predators("dd" , 18);
-        b.anihilationAnimals(b , a);
+        //b.anihilationAnimals(b , a);
+        Grass m = new Grass ("Трава") ;
+        a.addEdiblePlant(m);
+        a.checkEdibilityPlant(m);
     }
 }

@@ -17,11 +17,11 @@ public class Herbivores extends Animals
         anim_size = 12;
         anim_name = "Ivan";
     }
-    public void addEdiblePlant (Trees a , ArrayList edible)
+    public void addEdiblePlant (Trees a)
     {
         edible.add(a.plant_name);
     }
-    public void addNonEdiblePlant (Trees a , ArrayList non_edible)
+    public void addNonEdiblePlant (Trees a )
     {
         non_edible.add(a.plant_name);
     }
@@ -38,11 +38,11 @@ public class Herbivores extends Animals
             System.out.println("Растение несъедобное");
     }
 
-    public void addEdiblePlant (Grass a , ArrayList edible)
+    public void addEdiblePlant (Grass a )
     {
         edible.add(a.plant_name);
     }
-    public void addNonEdiblePlant (Grass a , ArrayList non_edible)
+    public void addNonEdiblePlant (Grass a )
     {
         non_edible.add(a.plant_name);
     }
