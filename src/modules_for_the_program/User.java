@@ -11,18 +11,11 @@ import java.util.Map;
 public class User extends Prog {
     private String userName;
     private String password;
+    private Status UserStatus;
     private Map<String, String> user_pass = new HashMap<String, String>();
     private Map<String, String> admin_pass = new HashMap<String, String>();
+    private Logs log;
 
-    public User() {
-        userName = "User";
-        password = "Password";
-    }
-
-    public User(String name, String pass) {
-        userName = name;
-        password = pass;
-    }
 
     public void setUserName(String name) {
         this.userName = name;
@@ -55,6 +48,13 @@ public class User extends Prog {
     public Map getAdmin_pass() {
         return admin_pass;
     }
+
+    public Status getUserStatus()
+    {
+        return UserStatus;
+    }
+
+
 
     public void CreateUser() {
         System.out.println("Введите login нового пользователя");
@@ -93,26 +93,19 @@ public class User extends Prog {
                         if (key1 == 1)
                         {
                             user_pass.put(userName, password);
-                            FileOutputStream l = new FileOutputStream(getFileName());
-                            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(l));
                             Date date = new Date();
-                            writer.write("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
-                            writer.close();
+                            log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
+                            UserStatus = Status.User;
                             break ;
                         }
                     } while (pas_adm != admin_pas);
 
-                    try {
-                        if (pas_adm == admin_pas) {
-                            admin_pass.put(userName, password);
-                            FileOutputStream l = new FileOutputStream(getFileName());
-                            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(l));
-                            Date date = new Date();
-                            writer.write("Создан пользователь с правами admin" + " " + getUserName() + " " + date.toString() + "\n");
-                            writer.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+
+                    if (pas_adm == admin_pas) {
+                        admin_pass.put(userName, password);
+                        Date date = new Date();
+                        log.WriteToLog("Создан пользователь с правами admin" + " " + getUserName() + " " + date.toString() + "\n");
+                        UserStatus = Status.Admin;
                     }
                     break;
 
@@ -130,5 +123,58 @@ public class User extends Prog {
         }
     }
 
+    public void EnterUser()
+    {
+        int flag = 0;  //флаг нужен для цикла, чтобы пользователь при ошибке ввода смог попробовать снова , при значении флага 1 программа считает, что вход выполнен
+        int cancelEnter = 1; // флаг нужен для выхода из цикла, если пользователь больше не захотел пробовать ввести логин
+        do {
 
+
+            try {
+
+                System.out.println("Введите login  пользователя");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                String tempUserName = reader.readLine();
+                if (user_pass.containsKey(tempUserName) )
+                {
+                    System.out.println("Введите пароль ");
+                    String pass = reader.readLine();
+                    if ( admin_pass.containsValue(pass))
+                    {
+                        System.out.println("Произошел вход в учетную запись пользователя под логином "  +  tempUserName);
+                        Date date = new Date();
+                        log.WriteToLog("Произведен вход в учетную запись пользователя " + " " + tempUserName + " " + date.toString() + "\n");
+                        flag = 1;
+                    }
+                }
+                else if(admin_pass.containsKey(tempUserName))
+                {
+                    System.out.println("Введите пароль ");
+                    String pass = reader.readLine();
+                    if ( admin_pass.containsValue(pass))
+                    {
+                        System.out.println("Произошел вход в учетную запись админа  под логином "  +  tempUserName);
+                        Date date = new Date();
+                        log.WriteToLog("Произведен вход в учетную запись админа " + " " + tempUserName + " " + date.toString() + "\n");
+
+                        flag = 1;
+                    }
+                }
+                else
+                {
+                    System.out.println("Такого пользователя не существует. Хотите повторить попытку? Чтобы продолжить - нажмите на любую цифру. Для выхода нажмите 1");
+                    cancelEnter = Integer.parseInt(reader.readLine());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } while (flag != 1 || cancelEnter != 1);
+    }
+
+
+}
+enum Status
+{
+    Admin,
+    User
 }

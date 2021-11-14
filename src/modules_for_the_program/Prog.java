@@ -8,6 +8,8 @@ import java.io.IOException;
 public class Prog
 {
     private String fileName = "Logs.txt";
+    private String fileNameSettings = "Settings.txt";
+    private File fileSettings = new File(getFileNameSettings() );
     private File fileLogs = new File(getFileName());
     private boolean flagLogsFileNonEmpty;
     private String fileNameUsers = "Users.txt";
@@ -20,6 +22,13 @@ public class Prog
     }
     public File getFileLogs() {
         return fileLogs;
+    }
+    public String getFileNameSettings ()
+    {
+        return fileNameSettings ;
+    }
+    public File getFileSettings() {
+        return fileSettings;
     }
     public boolean getFlagLogsFileNonEmpty() {
         return flagLogsFileNonEmpty;
@@ -48,9 +57,9 @@ public class Prog
     public void LogsFileCheckCreation() {
         try {
             if (getFileLogs().createNewFile()) {
-                System.out.println(" Файл создан");
+                System.out.println(" Файл логов создан");
             } else {
-                System.out.println("Файл  уже существует");
+                System.out.println("Файл логов уже существует");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,11 +69,22 @@ public class Prog
         try (BufferedReader reader = new BufferedReader(new FileReader(getFileName()))) {
             String line;
             if ((line = reader.readLine()) != null) {
-                System.out.println(" File with logs found , non empty");
+                System.out.println(" Файл с логами найден, не пустой");
                 setFlagLogsFileNonEmpty(true);
             } else if ((line = reader.readLine()) == null) {
-                System.out.println("File with users found , empty");
+                System.out.println("Файл с логами найден, пустой");
                 setFlagLogsFileNonEmpty(false);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void SettingFileCheckCreation() {
+        try {
+            if (getFileSettings().createNewFile()) {
+                System.out.println(" Файл настроек создан");
+            } else {
+                System.out.println("Файл настроек уже существует");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,12 +99,12 @@ public class Prog
             String line;
             if ( (line = reader.readLine()) != null)
             {
-                System.out.println(" File with logs found , non empty");
+                System.out.println(" Файл с пользователями найден , не пустой");
                 setFlagUsersFileNonEmpty(true);
             }
             else if (( line = reader.readLine()) == null)
             {
-                System.out.println("File with users found , empty");
+                System.out.println("Файл с пользователями найден, пустой");
                 setFlagUsersFileNonEmpty(false);
             }
         }
@@ -98,9 +118,9 @@ public class Prog
         try
         {
             if (fileUser.createNewFile()) {
-                System.out.println(" Файл создан");
+                System.out.println(" Файл с пользователями создан");
             } else {
-                System.out.println("Файл  уже существует");
+                System.out.println("Файл с пользователями уже существует");
             }
         }
         catch (IOException e)
@@ -108,5 +128,8 @@ public class Prog
             e.printStackTrace();
         }
     }
+
+
+
 }
 

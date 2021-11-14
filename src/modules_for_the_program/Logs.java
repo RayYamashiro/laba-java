@@ -1,25 +1,33 @@
 package modules_for_the_program;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
+import java.io.IOException;
+;
+
 public class Logs extends Prog {
-    private String Log;
+    private ArrayList<String> ArrayOfLogs ;
 
-
-    public Logs() {
-        Log = "";
+    public void setArrayOfLogs(ArrayList temp) {
+        this.ArrayOfLogs = temp;
     }
-    public void setLog(String log) {
-        this.Log = log;
-    }
-    public String getLog() {
-        return Log;
+    public ArrayList<String> getArrayOfLogs() {
+        return ArrayOfLogs;
     }
 
+    public void WriteToLog(String infAboutLog)
+    {
+        try {
+            FileOutputStream l = new FileOutputStream(getFileName());
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(l));
+            writer.write(infAboutLog);
+            writer.close();
+        } catch (IOException e)
+        {
 
+            e.printStackTrace();
+        }
+    }
 
 
 

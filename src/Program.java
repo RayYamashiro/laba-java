@@ -10,17 +10,22 @@ public class Program
     {
 
         Prog a = new Prog();
+        Settings e = new Settings();
         a.LogsFileCheckCreation();
         a.UserFileCheckCreation();
         a.LogsFileCheckFilling();
         a.UserFileCheckFilling();
         a.getFlagLogsFileNonEmpty();
         a.getFlagUsersFileNonEmpty();
+        a.SettingFileCheckCreation();
+        e.ReadFile();
+        /*
         if (a.getFlagUsersFileNonEmpty() != true) {
             System.out.println("Нет пользователей,необходимо создание нового");
             User user = new User();
             user.CreateUser();
         }
 
+         */
     }
 }
