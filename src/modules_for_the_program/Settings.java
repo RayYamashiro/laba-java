@@ -52,16 +52,31 @@ public class Settings extends Prog {
                 }
                 else
                 {
-                    Logs = false;
+                    Logs = true;
                     Date date = new Date();
                     a.WriteToLog("Невозможно считать параметр Logs " + " " + date.toString());
                 }
             }
             String line1 = reader.readLine();
             String [] strings1;
-
-
-
+            strings1 = line1.split(delimiter);
+            if(strings1[0].equals("Autotests"))  // ищем параметр Logs
+            {
+                if(strings1[1].equals("true"))
+                {
+                    AutoTests = true;
+                }
+                else if(strings1[1].equals("false"))
+                {
+                    AutoTests = false;
+                }
+                else
+                {
+                    AutoTests = true;
+                    Date date = new Date();
+                    a.WriteToLog("Невозможно считать параметр Autotests " + " " + date.toString());
+                }
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
