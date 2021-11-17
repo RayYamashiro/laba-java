@@ -1,9 +1,7 @@
 package modules_for_the_program;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Date;
 
 public class Prog
 {
@@ -15,6 +13,7 @@ public class Prog
     private String fileNameUsers = "Users.txt";
     private File fileUser = new File(getFileNameUsers());
     private boolean flagUsersFileNonEmpty;
+    private Logs a = new Logs();
     public  final  String admin_pas = "1111";
     public String getFileName()
     {
@@ -129,6 +128,35 @@ public class Prog
         }
     }
 
+    public void EnterMenu()
+    {
+        int flag = 0;
+        try {
+            System.out.println("Вход в учетную запись.............1" + "\n"
+                    + "Выход из программы................2" + "\n");
+            while (flag!=1) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                String l = reader.readLine();
+                switch(l)
+                {
+                    case("1"):
+                        LogUser();
+                        flag = 1;
+                        break;
+                    case ("2"):
+                        Date date = new Date();
+                        a.WriteToLog( "***** Завершение работы программы + " +  " " + date.toString() + "*****" +"\n" + "\n" );
+                        System.exit(0);
+                        break;
+                    default:
+                        flag = 0;
+                }
+            }
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 }

@@ -242,6 +242,8 @@ public class User extends Prog {
             return;
         }
     }
+
+    public void
 }
 
 enum Status {
