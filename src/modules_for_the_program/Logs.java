@@ -6,7 +6,7 @@ import java.io.IOException;
 ;
 
 public class Logs extends Prog {
-    private ArrayList<String> ArrayOfLogs ;
+    private ArrayList<String> ArrayOfLogs = new ArrayList<>() ;
 
     public void setArrayOfLogs(ArrayList temp) {
         this.ArrayOfLogs = temp;
@@ -18,10 +18,9 @@ public class Logs extends Prog {
     public void WriteToLog(String infAboutLog)
     {
         try {
-            FileOutputStream l = new FileOutputStream(getFileName());
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(l));
-            writer.write(infAboutLog);
-            writer.close();
+            BufferedWriter bf = new BufferedWriter(new FileWriter( getFileName() ,true )); // для последовательной записи в файл
+            bf.write(infAboutLog);
+            bf.close();
         } catch (IOException e)
         {
 
