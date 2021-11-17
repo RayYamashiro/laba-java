@@ -37,30 +37,31 @@ public class Settings extends Prog {
     {
         try (BufferedReader reader = new BufferedReader(new FileReader(getFileSettings()))) {
             String line = reader.readLine();
-            StringBuffer buffer = new StringBuffer(line);
-            String LogsWord = "Logs:";
-            boolean foundWordLog = Pattern.matches(LogsWord , buffer);
-            if(foundWordLog == true)
+            String [] strings;
+            String delimiter = ":" ; //разделитель
+            strings = line.split(delimiter); // разделение строки с по разделителю
+            if(strings[0].equals("Logs"))  // ищем параметр Logs
             {
-                buffer.delete(buffer.length() - LogsWord.length()-1 , buffer.length() ); // удаление из строки Logs:
-                String newLine = buffer.toString();
-                if(newLine == "true")
+                if(strings[1].equals("true"))
                 {
-                    setLogs(true);
-                    System.out.println("Все прочитано начальника");
+                    Logs = true;
                 }
-                else if (newLine == "false")
+                else if(strings[1].equals("false"))
                 {
-                    setLogs(false);
-                    System.out.println("Мы в жопе");
+                    Logs = false;
                 }
                 else
                 {
-                    setLogs(true);
+                    Logs = false;
                     Date date = new Date();
-                    a.WriteToLog("Невозможно считать поле logs, быор поставлено значение true " + " " +  date.toString() + "\n");
+                    a.WriteToLog("Невозможно считать параметр Logs " + " " + date.toString());
                 }
             }
+            String line1 = reader.readLine();
+            String [] strings1;
+
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
