@@ -161,7 +161,7 @@ public class User extends Prog {
 
     public void PrintToDatabase() {
         try {
-            PrintWriter pw = new PrintWriter(getFileNameUsers());
+            PrintWriter pw = new PrintWriter(getFileNameUsers());   // чистим все, что было в базе данных для корректной записи новой базы
             pw.close();
             // create new BufferedWriter for the output file
             BufferedWriter bf = new BufferedWriter(new FileWriter(getFileNameUsers(), true)); // для последовательной записи в файл

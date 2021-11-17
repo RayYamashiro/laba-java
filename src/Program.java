@@ -27,11 +27,11 @@ public class Program
             user.CreateUser();
         }
         user.ReadDatabase();
-        //e.ChangeSettingFile();
-        user.CreateUser();
-        user.PrintToDatabase();
-        user.ReadDatabase();
-        System.out.println(user.toString());
+        e.ChangeSettingFile();
+        //user.CreateUser();
+        //user.PrintToDatabase();
+        //user.ReadDatabase();
+        //System.out.println(user.toString());
         /*
         if (a.getFlagUsersFileNonEmpty() != true) {
             System.out.println("Нет пользователей,необходимо создание нового");

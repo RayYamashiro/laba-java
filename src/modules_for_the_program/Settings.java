@@ -77,7 +77,7 @@ public class Settings extends Prog {
     public void ChangeSettingFile() {
         try {
             int flag = 1;
-            if (u.getUserStatus() == Status.Admin) {
+           // if (u.getUserStatus() == Status.Admin) {
                 do {
                     System.out.println("Для изменения параметра Logs - напишите 1 , для изменения параметра Autotests напишите 2. Чтобы оставить все как есть напишите 0");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -98,10 +98,28 @@ public class Settings extends Prog {
                                     else
                                     {
                                         String newLine = "Logs:true";
-                                        FileOutputStream fileOut = new FileOutputStream(getFileSettings());
-                                        fileOut.write(newLine.getBytes());
-                                        fileOut.close();
+
+                                        BufferedReader reader1 = new BufferedReader(new FileReader(getFileSettings()));
+                                        String oldLine = reader1.readLine();
+                                        StringBuilder sb = new StringBuilder(oldLine);
+                                        sb.replace(0 , 12, newLine);
+                                        String line2 = reader1.readLine();
+                                        BufferedWriter bf = new BufferedWriter(new FileWriter(getFileSettings()));
+                                        PrintWriter pw = new PrintWriter(getFileSettings());   // чистим все, что было в базе данных для корректной записи новой базы
+                                        pw.close();
+                                        bf.write(sb.toString());
+                                        bf.newLine();
+                                        bf.write(line2);
+                                        bf.flush();
+                                        Date date = new Date();
+                                        a.WriteToLog("Изменение настройки Logs на true " + " " + date.toString() + "\n");
                                     }
+                                    break;
+                                case("2"):
+
+                                    break;
+                                default:
+                                    System.out.println("Выбрана не та цифра");
                                     break;
                             }
                             break;
@@ -118,9 +136,9 @@ public class Settings extends Prog {
                     }
 
                 } while (flag != 0);
-            } else {
-                System.out.println("У Вас нет доступа к изменению файла настройки");
-            }
+            //} else {
+            //    System.out.println("У Вас нет доступа к изменению файла настройки");
+            //}
         }catch(IOException e)
         {
             e.printStackTrace();
