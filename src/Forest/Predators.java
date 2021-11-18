@@ -4,8 +4,6 @@ public class Predators extends Animals
 {
     public Predators()
     {
-        setAnim_name("Vasyan");
-        setAnim_size(15);
     }
     public Predators(String name , double size)
     {
