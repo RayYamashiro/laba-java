@@ -3,53 +3,56 @@ package modules_for_the_program;
 import java.io.*;
 import java.util.Date;
 
-public class Prog
-{
+public class Prog {
     private String fileName = "Logs.txt";
     private String fileNameSettings = "Settings.txt";
-    private File fileSettings = new File(getFileNameSettings() );
+    private File fileSettings = new File(getFileNameSettings());
     private File fileLogs = new File(getFileName());
     private boolean flagLogsFileNonEmpty;
     private String fileNameUsers = "Users.txt";
     private File fileUser = new File(getFileNameUsers());
     private boolean flagUsersFileNonEmpty;
     //private Logs a = new Logs();
-    public  final  String admin_pas = "1111";
-    public String getFileName()
-    {
+    private User u;
+    public final String admin_pas = "1111";
+
+    public String getFileName() {
         return fileName;
     }
+
     public File getFileLogs() {
         return fileLogs;
     }
-    public String getFileNameSettings ()
-    {
-        return fileNameSettings ;
+
+    public String getFileNameSettings() {
+        return fileNameSettings;
     }
+
     public File getFileSettings() {
         return fileSettings;
     }
+
     public boolean getFlagLogsFileNonEmpty() {
         return flagLogsFileNonEmpty;
     }
+
     public void setFlagLogsFileNonEmpty(boolean temp) {
         this.flagLogsFileNonEmpty = temp;
     }
 
-    public String getFileNameUsers()
-    {
+    public String getFileNameUsers() {
         return fileNameUsers;
     }
-    public File getFileUser()
-    {
+
+    public File getFileUser() {
         return fileUser;
     }
-    public void setFlagUsersFileNonEmpty(boolean flag)
-    {
+
+    public void setFlagUsersFileNonEmpty(boolean flag) {
         this.flagUsersFileNonEmpty = flag;
     }
-    public boolean getFlagUsersFileNonEmpty()
-    {
+
+    public boolean getFlagUsersFileNonEmpty() {
         return flagUsersFileNonEmpty;
     }
 
@@ -64,6 +67,7 @@ public class Prog
             e.printStackTrace();
         }
     }
+
     public void LogsFileCheckFilling() {
         try (BufferedReader reader = new BufferedReader(new FileReader(getFileName()))) {
             String line;
@@ -78,6 +82,7 @@ public class Prog
             e.printStackTrace();
         }
     }
+
     public void SettingFileCheckCreation() {
         try {
             if (getFileSettings().createNewFile()) {
@@ -91,57 +96,46 @@ public class Prog
     }
 
 
-    public void UserFileCheckFilling()
-    {
-        try (BufferedReader reader = new BufferedReader( new FileReader(getFileUser())))
-        {
+    public void UserFileCheckFilling() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(getFileUser()))) {
             String line;
-            if ( (line = reader.readLine()) != null)
-            {
+            if ((line = reader.readLine()) != null) {
                 System.out.println(" Файл с пользователями найден , не пустой");
                 setFlagUsersFileNonEmpty(true);
-            }
-            else if (( line = reader.readLine()) == null)
-            {
+            } else if ((line = reader.readLine()) == null) {
                 System.out.println("Файл с пользователями найден, пустой");
                 setFlagUsersFileNonEmpty(false);
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void UserFileCheckCreation ()
-    {
-        try
-        {
+
+    public void UserFileCheckCreation() {
+        try {
             if (fileUser.createNewFile()) {
                 System.out.println(" Файл с пользователями создан");
             } else {
                 System.out.println("Файл с пользователями уже существует");
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void EnterMenu()
-    {
+    public void EnterMenu() {
         int flag = 0;
-        while (flag!=1) {
+        while (flag != 1) {
             try {
                 System.out.println("Вход в учетную запись.............1" + "\n"
-                                 + "Выход из программы................2" + "\n");
+                        + "Выход из программы................2" + "\n");
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 String l = reader.readLine();
                 switch (l) {
                     case ("1"):
-                        User u = new User();
-                        u.NewUser();
+                        User us = new User();
+                         u = us.EnterUser();
                         flag = 1;
                         break;
                     case ("2"):
@@ -153,14 +147,52 @@ public class Prog
                     default:
                         flag = 0;
                 }
-            }catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
     }
 
+
+    public void MainMenu()
+    {
+        int flag = 0;
+
+        while (flag != 1) {
+            try
+            {
+                System.out.println("Сменить пароль....................1" + "\n"
+                                 + "Сменить логин.....................2" + "\n"
+                                 + "Добавить пользователя.............3" + "\n"
+                                 + "Добавить хищника..................4" + "\n"
+                                 + "Добавить травоядное...............5" + "\n"
+                                 + "Добавить дерево...................6" + "\n"
+                                 + "Добавить траву....................7" + "\n"
+                                 + "Вывод всех пользователей..........8" + "\n"
+                                 + "Вывод всех объектов...............9" + "\n"
+                                 + "Пожирание травоядного.............10" + "\n"
+                                 + "Выход из программы................11" + "\n"
+                );
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                String l = reader.readLine();
+                switch (l) {
+                    case ("1"):
+                        u.ChangePassword(u);
+                        break;
+                    case("2"):
+                        u.ChangeLogin(u);
+                        break;
+                }
+
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
 }
 

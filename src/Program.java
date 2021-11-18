@@ -27,6 +27,9 @@ public class Program
             user.CreateUser();
         }
         user.ReadDatabase();
+        e.ReadFile();
+        e.PrintSettingFile();
+        a.EnterMenu();
         e.SettingMenu();
 
         //user.CreateUser();

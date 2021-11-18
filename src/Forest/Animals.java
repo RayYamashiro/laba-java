@@ -6,7 +6,7 @@ import java.io.File;
 public abstract class  Animals
 {
     private String anim_name;
-    private double anim_size;
+    private Integer anim_size;
     private String fileNamePredators = "Predators.txt";
     private File filePredators = new File(getFileNamePredators() );
     private String fileNameHerbivores = "Herbivores.txt";
@@ -20,15 +20,23 @@ public abstract class  Animals
     {
         return fileNameHerbivores ;
     }
+    public File getFilePredators()
+    {
+        return  filePredators;
+    }
+    public File getFileHerbivores()
+    {
+        return  fileHerbivores;
+    }
     public void setAnim_name(String name)
     {
         this.anim_name = name;
     }
-    public void setAnim_size(double size)
+    public void setAnim_size(Integer size)
     {
         this.anim_size = size;
     }
-    public Double getAnim_size()
+    public Integer getAnim_size()
     {
         return anim_size;
     }

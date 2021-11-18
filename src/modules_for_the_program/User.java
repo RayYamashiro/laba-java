@@ -134,7 +134,7 @@ public class User extends Prog {
         }
     }
 
-    public void NewUser() {
+    /*public void NewUser() {
         int flag = 0;  //флаг нужен для цикла, чтобы пользователь при ошибке ввода смог попробовать снова , при значении флага 1 программа считает, что вход выполнен
         int cancelEnter = 1; // флаг нужен для выхода из цикла, если пользователь больше не захотел пробовать ввести логин
         do {
@@ -173,7 +173,7 @@ public class User extends Prog {
             }
         } while (flag != 1 || cancelEnter != 1);
     }
-
+*/
     public void PrintToDatabase() {
         try {
             PrintWriter pw = new PrintWriter(getFileNameUsers());   // чистим все, что было в базе данных для корректной записи новой базы

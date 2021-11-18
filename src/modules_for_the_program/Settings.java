@@ -75,10 +75,10 @@ public class Settings extends Prog {
         }
     }
 
-    public void ChangeSettingFile() {
+    public void ChangeSettingFile(User user) {
         try {
             int flag = 1;
-             if (u.getUserStatus() == Status.Admin) {
+             if (user.getUserStatus() == Status.Admin) {
                 do {
                     System.out.println("Для изменения параметра Logs - напишите 1 , для изменения параметра Autotests напишите 2. Чтобы оставить все как есть напишите 0");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -239,8 +239,8 @@ public class Settings extends Prog {
             String l = reader.readLine();
             switch (l){
                 case("1"):
-                    u.NewUser();
-                    ChangeSettingFile();
+                    u.EnterUser();
+                    ChangeSettingFile(u);
                     break;
                 default:
                     return;
