@@ -85,4 +85,8 @@ public class Grass extends Plants
             e.printStackTrace();
         }
     }
+    public void PrintAllGrass()
+    {
+        System.out.println(grass.toString());
+    }
 }

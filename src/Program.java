@@ -23,15 +23,16 @@ public class Program
         a.getFlagUsersFileNonEmpty();
         a.SettingFileCheckCreation();
         e.ReadFile();
+
         if(a.getFlagUsersFileNonEmpty() == false ) {
             user.CreateUser();
         }
         user.ReadDatabase();
         e.ReadFile();
         e.PrintSettingFile();
-        a.EnterMenu();
-        e.SettingMenu();
-
+        a.EnterMenu(user);
+        e.SettingMenu(user);
+        a.MainMenu(user);
         //user.CreateUser();
         //user.PrintToDatabase();
         //user.ReadDatabase();

@@ -83,4 +83,8 @@ public class Trees extends Plants
             e.printStackTrace();
         }
     }
+    public void PrintAllTrees()
+    {
+        System.out.println(trees.toString());
+    }
 }

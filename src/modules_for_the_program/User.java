@@ -18,7 +18,7 @@ public class User extends Prog {
     private HashMap<String, String> user_pass = new HashMap<String, String>();
     private HashMap<String, String> admin_pass = new HashMap<String, String>();
     private Logs log = new Logs();
-
+    private boolean EnterUser = false;
 
     public User(String tempName, String tempPas, Status a)
     {
@@ -70,8 +70,16 @@ public class User extends Prog {
         UserStatus = a;
     }
 
+    public void  setEnterUser(boolean a)
+    {
+        EnterUser = a;
+    }
+    public boolean getEnterUser()
+    {
+        return  EnterUser;
+    }
 
-    public void CreateUser() {
+    public User CreateUser() {
         System.out.println("Введите login нового пользователя");
         try {
             String line;
@@ -102,11 +110,13 @@ public class User extends Prog {
                         System.out.println("Введите пароль для доступа к созданию admin");
                         pas_adm = reader1.readLine();
                         if (pas_adm.equals(admin_pas)) {
+
                             admin_pass.put(userName, password);
                             Date date = new Date();
                             log.WriteToLog("Создан пользователь с правами admin" + " " + getUserName() + " " + date.toString() + "\n");
-                            UserStatus = Status.Admin;
-                            return;
+
+                            User user =new User(userName , password , Status.Admin);
+                            return user;
                         }
                         System.out.println("Пароль неверный. Попробуйте еще раз или создайте обычного пользователя");
                         System.out.println("Для создания обычного пользователя нажмите 1 , для продолжения попытки угадывания - любую другую цифру");
@@ -115,8 +125,8 @@ public class User extends Prog {
                             user_pass.put(userName, password);
                             Date date = new Date();
                             log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
-                            UserStatus = Status.User;
-                            return;
+                            User user =new User(userName , password , Status.User);
+                            return user;
                         }
                     } while (!pas_adm.equals(admin_pas));
 
@@ -132,6 +142,7 @@ public class User extends Prog {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     /*public void NewUser() {
@@ -449,12 +460,15 @@ public class User extends Prog {
                     Date date = new Date();
                     log.WriteToLog("Выполнен вход в учетную запись" + " " + tempLogin + " " + date.toString() + "\n");
                     User user = new User(tempLogin, tempPas, Status.User);
+                    EnterUser = true;
                     return user;
                 } else if (admin_pass.containsKey(tempLogin) && admin_pass.containsValue(tempPas)) {
-                    System.out.println("Вход произведен в учетную запись" + tempLogin);
+                    System.out.println("Вход произведен в учетную запись" + " " +  tempLogin);
                     Date date = new Date();
                     log.WriteToLog("Выполнен вход в учетную запись с уровнем доступа admin" + " " + tempLogin + " " + date.toString() + "\n");
                     User user = new User(tempLogin, tempPas, Status.Admin);
+                    EnterUser = true;
+                    return  user;
                 } else {
                     System.out.println("Вход не был произведен. Возможна ошибка в логине / пароле или пользователь не существует." + "\n"
                                         + "Хотите попробовать снова? Если да - нажмите 1 , если вы хотите выйти из программы - нажмите любую другую цифру. ");

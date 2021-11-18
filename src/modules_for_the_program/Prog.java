@@ -1,5 +1,10 @@
 package modules_for_the_program;
 
+import Forest.Grass;
+import Forest.Herbivores;
+import Forest.Predators;
+import Forest.Trees;
+
 import java.io.*;
 import java.util.Date;
 
@@ -13,7 +18,12 @@ public class Prog {
     private File fileUser = new File(getFileNameUsers());
     private boolean flagUsersFileNonEmpty;
     //private Logs a = new Logs();
-    private User u;
+
+    //private Predators p = new Predators();
+
+
+
+
     public final String admin_pas = "1111";
 
     public String getFileName() {
@@ -123,7 +133,7 @@ public class Prog {
         }
     }
 
-    public void EnterMenu() {
+    public void EnterMenu(User user) {
         int flag = 0;
         while (flag != 1) {
             try {
@@ -134,8 +144,7 @@ public class Prog {
                 String l = reader.readLine();
                 switch (l) {
                     case ("1"):
-                        User us = new User();
-                         u = us.EnterUser();
+                        user.EnterUser();
                         flag = 1;
                         break;
                     case ("2"):
@@ -155,7 +164,7 @@ public class Prog {
     }
 
 
-    public void MainMenu()
+    public void MainMenu(User u)
     {
         int flag = 0;
 
@@ -172,20 +181,66 @@ public class Prog {
                                  + "Вывод всех пользователей..........8" + "\n"
                                  + "Вывод всех объектов...............9" + "\n"
                                  + "Пожирание травоядного.............10" + "\n"
-                                 + "Выход из программы................11" + "\n"
+                                 + "Удаление пользователя.............11" + "\n"
+                                 + "Выход из программы................12" + "\n"
                 );
-
+                Predators p = new Predators();
+                Herbivores h = new Herbivores();
+                Grass g = new Grass();
+                Trees t = new Trees();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                String l = reader.readLine();
-                switch (l) {
-                    case ("1"):
-                        u.ChangePassword(u);
-                        break;
-                    case("2"):
-                        u.ChangeLogin(u);
-                        break;
-                }
+                int flag1 = 0;
+                while(flag1 != 1) {
+                    String l = reader.readLine();
+                    switch (l) {
+                        case ("1"):
+                            u.ChangePassword(u);
+                            break;
+                        case ("2"):
+                            u.ChangeLogin(u);
+                            break;
+                        case ("3"):
+                            u.CreateUser();
+                            break;
+                        case ("4"):
 
+                            p.CreatePredator();
+                            break;
+                        case ("5"):
+                            h.CreateHerbivores();
+                            break;
+                        case ("6"):
+                            t.addTree();
+                            break;
+                        case ("7"):
+                            g.addGrass();
+                            break;
+                        case ("8"):
+                            u.PrintAllUsers();
+                            break;
+                        case ("9"):
+
+                            p.PrintAllPredators();
+                            System.out.println("\n");
+                            h.PrintAllHerbivores();
+                            System.out.println("\n");
+                            t.PrintAllTrees();
+                            System.out.println("\n");
+                            g.PrintAllGrass();
+                            System.out.println("\n");
+                            break;
+                        case ("10"):
+                            p.anihilationAnimals();
+                            break;
+                        case ("11"):
+                            u.DeleteUser(u);
+                        case ("12"):
+                            Logs logs = new Logs();
+                            Date date = new Date();
+                            logs.WriteToLog("***** Завершение работы программы + " + " " + date.toString() + "*****" + "\n" + "\n");
+                            System.exit(0);
+                    }
+                }
             } catch (IOException e)
             {
                 e.printStackTrace();

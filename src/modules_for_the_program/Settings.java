@@ -230,7 +230,7 @@ public class Settings extends Prog {
         System.out.println("Считывание файла настроек : " + "\n" + " Logs - " + " " + Logs + "\n" + "Autotests - " + " " + AutoTests + "\n");
     }
 
-    public void SettingMenu()
+    public void SettingMenu(User user)
     {
         try {
             PrintSettingFile();
@@ -239,8 +239,10 @@ public class Settings extends Prog {
             String l = reader.readLine();
             switch (l){
                 case("1"):
-                    u.EnterUser();
-                    ChangeSettingFile(u);
+                    if(user.getEnterUser() == false) {
+                        user.EnterUser();
+                    }
+                    ChangeSettingFile(user);
                     break;
                 default:
                     return;

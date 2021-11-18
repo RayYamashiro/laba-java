@@ -13,6 +13,7 @@ import static java.lang.Integer.parseInt;
 public class Predators extends Animals
 {
     private Map<String, Integer> predators = new HashMap<String, Integer>();
+    private Map<String, Integer> herbivores = new HashMap<String, Integer>();
     //private Herbivores h = new Herbivores();
     private Logs log = new Logs();
     public Predators()
@@ -30,18 +31,37 @@ public class Predators extends Animals
     public Map getPredators() {
         return predators;
     }
-    public void anihilationAnimals (Predators a , Herbivores b)
+    public void anihilationAnimals ()
     {
-        if(a.getAnim_size() > b.getAnim_size())
+        try {
+            String line;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Введите название хищника");
+            line = reader.readLine();
+            if (predators.containsKey(line)) {
+                System.out.println("Введите название травоядного");
+                String line1 = reader.readLine();
+                if (herbivores.containsKey(line)) {
+                    if(predators.get(line) > herbivores.get(line1))
+                    {
+                        System.out.println("Произошло уничтожение травоядного.");
+                        herbivores.remove(line1);
+                        Date date = new Date();
+                        log.WriteToLog("Произошло уничтожение травоядного" + " " + line1 + " " + date.toString() + "\n");
+                    }
+                    else
+                        System.out.println("Размер хищника равен или меньше размера травоядного. Уничтожения не произошло.");
+                }else
+                    System.out.println("Такого травоядного нет");
+            }
+            else
+                System.out.println("Такого хищника нет");
+        }catch (IOException e)
         {
-
-            System.out.println("Произошло уничтожение травоядного.");
-            b.getHerbivores().remove(b.getAnim_name());
-            Date date = new Date();
-            log.WriteToLog("Произошло уничтожение травоядного" + " " + b.getAnim_name() + " " + date.toString() + "\n");
+            e.printStackTrace();
         }
-        else
-            System.out.println("Размер хищника равен или меньше размера травоядного. Уничтожения не произошло.");
+
+
     }
 
     public void CreatePredator()
