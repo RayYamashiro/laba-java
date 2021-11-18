@@ -353,6 +353,74 @@ public class User extends Prog {
         ArrayList<String> values1 = new ArrayList<>(admin_pass.keySet());
         System.out.println("Все пользователи с правом доступа admin:" + " " + values1);
     }
+    public void DeleteUser(User user)
+    {
+        try {
+            System.out.println("Вы хотите удалить свою учетную запись или другую? " +
+                    "Для удаления своей учетной записи нажмите 1, для удаления чужой записи нажмите 2, если вы хотите оставить все как есть нажмите 0");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            int keySw = 0;
+            String key = reader.readLine();
+            do {
+                switch (key) {
+                    case("1"):
+                        if(user.getUserStatus() == Status.Admin)
+                        {
+                            admin_pass.remove(user.getUserName());
+                            System.out.println("Был удален пользователь" + user.getUserName() + " " + "Производится выход из программы");
+                            Date date = new Date();
+                            log.WriteToLog("Был удален пользователь c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                        }
+                        if(user.getUserStatus() == Status.User)
+                        {
+                            user_pass.remove(user.getUserName());
+                            System.out.println("Был удален пользователь" + user.getUserName() + " " + "Производится выход из программы");
+                            Date date = new Date();
+                            log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
+                        }
+                        System.exit(0);
+                        break;
+                    case("2"):
+                        if(user.getUserStatus() == Status.Admin)
+                        {
+                            System.out.println("Введите login пользователя, которого вы хотите удалить");
+                            String tempLog = reader.readLine();
+                            if(user_pass.containsKey(tempLog))
+                            {
+                                user_pass.remove(user.getUserName());
+                                System.out.println("Был удален пользователь" + user.getUserName() );
+                                Date date = new Date();
+                                log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            }
+                            if(admin_pass.containsKey(tempLog))
+                            {
+                                admin_pass.remove(user.getUserName());
+                                System.out.println("Был удален пользователь с уровнем доступа admin" + user.getUserName() );
+                                Date date = new Date();
+                                log.WriteToLog("Был удален пользователь с уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            }
+                        }
+                        else {
+                            System.out.println("Вы не обладаете достаточным уровнем доступа к данной функции");
+                            Date date = new Date();
+                            log.WriteToLog("Была попытка удаления чужого аккаунта из учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            break;
+                        }
+                        break;
+                    case("0"):
+                        keySw = 1;
+                        break;
+                    default:
+                        System.out.println("Введено не то число");
+                        break;
+                }
+            }while (keySw !=1);
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 enum Status {
