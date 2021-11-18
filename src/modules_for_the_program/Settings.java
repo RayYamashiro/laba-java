@@ -239,7 +239,7 @@ public class Settings extends Prog {
             String l = reader.readLine();
             switch (l){
                 case("1"):
-                    LogUser();
+                    u.NewUser();
                     ChangeSettingFile();
                     break;
                 default:

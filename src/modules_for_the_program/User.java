@@ -20,6 +20,15 @@ public class User extends Prog {
     private Logs log = new Logs();
 
 
+    public User(String tempName, String tempPas, Status a)
+    {
+        userName = tempName;
+        password = tempPas;
+        UserStatus = a;
+    }
+    public User()
+    {
+    }
     public void setUserName(String name) {
         this.userName = name;
     }
@@ -54,6 +63,11 @@ public class User extends Prog {
 
     public Status getUserStatus() {
         return UserStatus;
+    }
+
+    public  void setUserStatus(Status a)
+    {
+        UserStatus = a;
     }
 
 
@@ -120,7 +134,7 @@ public class User extends Prog {
         }
     }
 
-    public void EnterUser() {
+    public void NewUser() {
         int flag = 0;  //флаг нужен для цикла, чтобы пользователь при ошибке ввода смог попробовать снова , при значении флага 1 программа считает, что вход выполнен
         int cancelEnter = 1; // флаг нужен для выхода из цикла, если пользователь больше не захотел пробовать ввести логин
         do {
@@ -147,7 +161,7 @@ public class User extends Prog {
                         System.out.println("Произошел вход в учетную запись админа  под логином " + tempUserName);
                         Date date = new Date();
                         log.WriteToLog("Произведен вход в учетную запись админа " + " " + tempUserName + " " + date.toString() + "\n");
-
+                        reader.close();
                         flag = 1;
                     }
                 } else {
@@ -420,7 +434,49 @@ public class User extends Prog {
             e.printStackTrace();
         }
     }
-
+    public User EnterUser()
+    {
+        int flag = 0;
+        do {
+            try {
+                System.out.println("Происходит вход в учетную запись. " + "\n" + "Введите login");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                String tempLogin = reader.readLine();
+                System.out.println("Введите пароль");
+                String tempPas = reader.readLine();
+                if (user_pass.containsKey(tempLogin) && user_pass.containsValue(tempPas)) {
+                    System.out.println("Вход произведен в учетную запись" + tempLogin);
+                    Date date = new Date();
+                    log.WriteToLog("Выполнен вход в учетную запись" + " " + tempLogin + " " + date.toString() + "\n");
+                    User user = new User(tempLogin, tempPas, Status.User);
+                    return user;
+                } else if (admin_pass.containsKey(tempLogin) && admin_pass.containsValue(tempPas)) {
+                    System.out.println("Вход произведен в учетную запись" + tempLogin);
+                    Date date = new Date();
+                    log.WriteToLog("Выполнен вход в учетную запись с уровнем доступа admin" + " " + tempLogin + " " + date.toString() + "\n");
+                    User user = new User(tempLogin, tempPas, Status.Admin);
+                } else {
+                    System.out.println("Вход не был произведен. Возможна ошибка в логине / пароле или пользователь не существует." + "\n"
+                                        + "Хотите попробовать снова? Если да - нажмите 1 , если вы хотите выйти из программы - нажмите любую другую цифру. ");
+                    Date date = new Date();
+                    log.WriteToLog("Выполнен вход в учетную запись  " + " " + tempLogin + " " + "не произведен"  + " " + date.toString() + "\n");
+                    String flag1 = reader.readLine();
+                    if(flag1.equals("1"))
+                    {
+                        flag = 0;
+                    }
+                    else
+                    {
+                        flag = 1;
+                        System.exit(0);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }while (flag != 1);
+        return null;
+    }
 }
 
 enum Status {

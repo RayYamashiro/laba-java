@@ -131,32 +131,34 @@ public class Prog
     public void EnterMenu()
     {
         int flag = 0;
-        try {
-            System.out.println("Вход в учетную запись.............1" + "\n"
-                    + "Выход из программы................2" + "\n");
-            while (flag!=1) {
+        while (flag!=1) {
+            try {
+                System.out.println("Вход в учетную запись.............1" + "\n"
+                                 + "Выход из программы................2" + "\n");
+
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 String l = reader.readLine();
-                switch(l)
-                {
-                    case("1"):
-                        LogUser();
+                switch (l) {
+                    case ("1"):
+                        User u = new User();
+                        u.NewUser();
                         flag = 1;
                         break;
                     case ("2"):
                         Date date = new Date();
                         Logs a = new Logs();
-                        a.WriteToLog( "***** Завершение работы программы + " +  " " + date.toString() + "*****" +"\n" + "\n" );
+                        a.WriteToLog("***** Завершение работы программы + " + " " + date.toString() + "*****" + "\n" + "\n");
                         System.exit(0);
                         break;
                     default:
                         flag = 0;
                 }
+            }catch (IOException e)
+            {
+                e.printStackTrace();
             }
-        }catch (IOException e)
-        {
-            e.printStackTrace();
         }
+
     }
 
 
