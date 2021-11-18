@@ -13,7 +13,7 @@ public class Prog
     private String fileNameUsers = "Users.txt";
     private File fileUser = new File(getFileNameUsers());
     private boolean flagUsersFileNonEmpty;
-    private Logs a = new Logs();
+    //private Logs a = new Logs();
     public  final  String admin_pas = "1111";
     public String getFileName()
     {
@@ -145,6 +145,7 @@ public class Prog
                         break;
                     case ("2"):
                         Date date = new Date();
+                        Logs a = new Logs();
                         a.WriteToLog( "***** Завершение работы программы + " +  " " + date.toString() + "*****" +"\n" + "\n" );
                         System.exit(0);
                         break;
