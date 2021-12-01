@@ -14,7 +14,7 @@ public class Program
         Settings s = new Settings();
         User user = new User();
         Date date = new Date();
-        logs.WriteToLog( "***** Начало работы программы + " +  " " + date.toString() +" " +  "*****" + " \n");
+
         a.LogsFileCheckCreation();
         a.UserFileCheckCreation();
         a.LogsFileCheckFilling();
@@ -23,7 +23,9 @@ public class Program
         a.getFlagUsersFileNonEmpty();
         a.SettingFileCheckCreation();
         s.ReadFile(s);
-
+        if(s.getLogs() == true) {
+            logs.WriteToLog("***** Начало работы программы + " + " " + date.toString() + " " + "*****" + " \n");
+        }
         if(a.getFlagUsersFileNonEmpty() == false ) {
             user.CreateUser(s);
         }

@@ -80,6 +80,7 @@ public class User extends Prog {
     }
 
     public User CreateUser(Settings s) {
+        User user = new User();
         System.out.println("Введите login нового пользователя");
         try {
             String line;
@@ -89,13 +90,13 @@ public class User extends Prog {
                 System.out.println("Такой пользователь существует, введите другой логин");
                 line = reader.readLine();
             }
-            setUserName(line);
+            user.setUserName(line);
             String pass;
 
             System.out.println("Введите пароль нового пользователя");
             BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
             pass = reader1.readLine();
-            setPassword(pass);
+            user.setPassword(pass);
             System.out.println("Какой уровень доступа у пользователя admin или user?");
             System.out.println("Для admin введите 1 , а для user 2");
             int key = Integer.parseInt(reader1.readLine());
@@ -109,29 +110,29 @@ public class User extends Prog {
                     do {
                         System.out.println("Введите пароль для доступа к созданию admin");
                         pas_adm = reader1.readLine();
-                        if (pas_adm.equals(admin_pas)) {
+                        if (pas_adm.equals(admin_password)) {
 
-                            admin_pass.put(userName, password);
+                            admin_pass.put(user.userName, user.password);
                             if(s.getLogs() == true) {
                                 Date date = new Date();
                                 log.WriteToLog("Создан пользователь с правами admin" + " " + getUserName() + " " + date.toString() + "\n");
                             }
-                            User user =new User(userName , password , Status.Admin);
+                            user.setUserStatus(Status.Admin);
                             return user;
                         }
                         System.out.println("Пароль неверный. Попробуйте еще раз или создайте обычного пользователя");
                         System.out.println("Для создания обычного пользователя нажмите 1 , для продолжения попытки угадывания - любую другую цифру");
                         int key1 = Integer.parseInt(reader1.readLine());
                         if (key1 == 1) {
-                            user_pass.put(userName, password);
+                            user_pass.put(user.userName, user.password);
                             if(s.getLogs() == true) {
                                 Date date = new Date();
                                 log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
                             }
-                            User user =new User(userName , password , Status.User);
+                            user.setUserStatus(Status.User);
                             return user;
                         }
-                    } while (!pas_adm.equals(admin_pas));
+                    } while (!pas_adm.equals(admin_password));
 
 
                     break;

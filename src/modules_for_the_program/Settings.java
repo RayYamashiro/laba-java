@@ -79,7 +79,7 @@ public class Settings extends Prog {
     public Settings ChangeSettingFile(User user, Settings s) {
         try {
             int flag = 1;
-             if (user.getUserStatus() == Status.Admin) {
+             if (user.getAdmin_pass().containsKey(user.getUserName())) {
                 do {
                     System.out.println("Для изменения параметра Logs - напишите 1 , для изменения параметра Autotests напишите 2. Чтобы оставить все как есть напишите 0");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

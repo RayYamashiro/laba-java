@@ -24,7 +24,7 @@ public class Prog {
 
 
 
-    public final String admin_pas = "1111";
+    public final String admin_password = "1111";
 
     public String getFileName() {
         return fileName;
