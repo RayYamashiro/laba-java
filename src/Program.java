@@ -22,18 +22,18 @@ public class Program
         a.getFlagLogsFileNonEmpty();
         a.getFlagUsersFileNonEmpty();
         a.SettingFileCheckCreation();
-        e.ReadFile();
+        s.ReadFile(s);
 
         if(a.getFlagUsersFileNonEmpty() == false ) {
             user.CreateUser();
         }
         user.ReadDatabase();
-        s.ReadFile();
+        s.ReadFile(s);
         s.PrintSettingFile();
         a.EnterMenu(user,s);
         s.SettingMenu(user, s);
         while (true) {
-            a.MainMenu(user);
+            a.MainMenu(user,s);
         }
         //user.CreateUser();
         //user.PrintToDatabase();

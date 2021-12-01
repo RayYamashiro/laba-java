@@ -1,6 +1,7 @@
 package Forest;
 
 import modules_for_the_program.Logs;
+import modules_for_the_program.Settings;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Predators extends Animals
     public Map getPredators() {
         return predators;
     }
-    public void anihilationAnimals ()
+    public void anihilationAnimals (Settings s)
     {
         try {
             String line;
@@ -46,8 +47,10 @@ public class Predators extends Animals
                     {
                         System.out.println("Произошло уничтожение травоядного.");
                         herbivores.remove(line1);
-                        Date date = new Date();
-                        log.WriteToLog("Произошло уничтожение травоядного" + " " + line1 + " " + date.toString() + "\n");
+                        if(s.getLogs() == true) {
+                            Date date = new Date();
+                            log.WriteToLog("Произошло уничтожение травоядного" + " " + line1 + " " + date.toString() + "\n");
+                        }
                     }
                     else
                         System.out.println("Размер хищника равен или меньше размера травоядного. Уничтожения не произошло.");
@@ -64,7 +67,7 @@ public class Predators extends Animals
 
     }
 
-    public void CreatePredator()
+    public void CreatePredator(Settings s)
     {
         System.out.println("Введите название нового хищника");
         try {
@@ -83,8 +86,10 @@ public class Predators extends Animals
             int size = parseInt(reader1.readLine());
             setAnim_size(size);
             predators.put(line, size);
-            Date date = new Date();
-            log.WriteToLog("Создано животное типа Predator" + " " + getAnim_name() + " " + date.toString() + "\n");
+            if(s.getLogs() == true) {
+                Date date = new Date();
+                log.WriteToLog("Создано животное типа Predator" + " " + getAnim_name() + " " + date.toString() + "\n");
+            }
         }catch (IOException e)
         {
             e.printStackTrace();

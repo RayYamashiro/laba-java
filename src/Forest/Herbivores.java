@@ -1,6 +1,7 @@
 package Forest;
 
 import modules_for_the_program.Logs;
+import modules_for_the_program.Settings;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class Herbivores extends Animals
             System.out.println("Растение несъедобное");
     }
 
-    public void CreateHerbivores()
+    public void CreateHerbivores(Settings s)
     {
         System.out.println("Введите название нового травоядного");
         try {
@@ -92,8 +93,10 @@ public class Herbivores extends Animals
             int size = parseInt(reader1.readLine());
             setAnim_size(size);
             herbivores.put(line, size);
-            Date date = new Date();
-            log.WriteToLog("Создано животное типа Herbivores" + " " + getAnim_name() + " " + date.toString() + "\n");
+            if(s.getLogs()==true) {
+                Date date = new Date();
+                log.WriteToLog("Создано животное типа Herbivores" + " " + getAnim_name() + " " + date.toString() + "\n");
+            }
         }catch (IOException e)
         {
             e.printStackTrace();

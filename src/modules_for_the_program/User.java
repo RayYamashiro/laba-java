@@ -79,7 +79,7 @@ public class User extends Prog {
         return  EnterUser;
     }
 
-    public User CreateUser() {
+    public User CreateUser(Settings s) {
         System.out.println("Введите login нового пользователя");
         try {
             String line;
@@ -112,9 +112,10 @@ public class User extends Prog {
                         if (pas_adm.equals(admin_pas)) {
 
                             admin_pass.put(userName, password);
-                            Date date = new Date();
-                            log.WriteToLog("Создан пользователь с правами admin" + " " + getUserName() + " " + date.toString() + "\n");
-
+                            if(s.getLogs() == true) {
+                                Date date = new Date();
+                                log.WriteToLog("Создан пользователь с правами admin" + " " + getUserName() + " " + date.toString() + "\n");
+                            }
                             User user =new User(userName , password , Status.Admin);
                             return user;
                         }
@@ -123,8 +124,10 @@ public class User extends Prog {
                         int key1 = Integer.parseInt(reader1.readLine());
                         if (key1 == 1) {
                             user_pass.put(userName, password);
-                            Date date = new Date();
-                            log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
+                            if(s.getLogs() == true) {
+                                Date date = new Date();
+                                log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
+                            }
                             User user =new User(userName , password , Status.User);
                             return user;
                         }
@@ -135,8 +138,10 @@ public class User extends Prog {
 
                 case (2):
                     user_pass.put(userName, password);
-                    Date date = new Date();
-                    log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Создан пользователь" + " " + getUserName() + " " + date.toString() + "\n");
+                    }
                     break;
             }
         } catch (IOException e) {
@@ -269,7 +274,7 @@ public class User extends Prog {
         }
     }
 
-    public void ChangePassword(User user)
+    public void ChangePassword(User user, Settings s)
     {
         if(user_pass.containsKey(user.getUserName()))
         {
@@ -281,8 +286,10 @@ public class User extends Prog {
                     String newPass = reader.readLine();
                     user_pass.put(user.getUserName(), newPass);
                     System.out.println("Пароль был изменен");
-                    Date date = new Date();
-                    log.WriteToLog("Был изменен пароль в учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Был изменен пароль в учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+                    }
                 }catch (IOException e)
                 {
                     e.printStackTrace();
@@ -304,8 +311,10 @@ public class User extends Prog {
                     String newPass = reader.readLine();
                     admin_pass.put(user.getUserName(), newPass);
                     System.out.println("Пароль был изменен");
-                    Date date = new Date();
-                    log.WriteToLog("Был изменен пароль в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Был изменен пароль в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                    }
                 }catch (IOException e)
                 {
                     e.printStackTrace();
@@ -318,7 +327,7 @@ public class User extends Prog {
             }
         }
     }
-    public void ChangeLogin(User user)
+    public void ChangeLogin(User user, Settings s)
     {
         if(user_pass.containsKey(user.getUserName()))
         {
@@ -332,8 +341,10 @@ public class User extends Prog {
                     user_pass.remove(user.getUserName());
                     user_pass.put(newLog , pass);
                     System.out.println("Логин был изменен");
-                    Date date = new Date();
-                    log.WriteToLog("Был изменен логин в учетной записи" + " " + user.getUserName() + " "  + "новый логин-" + " " + newLog + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Был изменен логин в учетной записи" + " " + user.getUserName() + " " + "новый логин-" + " " + newLog + date.toString() + "\n");
+                    }
                 }catch (IOException e)
                 {
                     e.printStackTrace();
@@ -357,8 +368,11 @@ public class User extends Prog {
                     admin_pass.remove(user.getUserName());
                     admin_pass.put(newLog , pass);
                     System.out.println("Логин был изменен");
-                    Date date = new Date();
-                    log.WriteToLog("Был изменен логин в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " "  + "новый логин-" + " " + newLog + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Был изменен логин в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " "
+                                + "новый логин-" + " " + newLog + date.toString() + "\n");
+                    }
                 }catch (IOException e)
                 {
                     e.printStackTrace();

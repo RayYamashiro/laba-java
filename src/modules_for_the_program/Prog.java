@@ -144,7 +144,7 @@ public class Prog {
                 String l = reader.readLine();
                 switch (l) {
                     case ("1"):
-                        user.EnterUser();
+                        user.EnterUser(s);
                         flag = 1;
                         break;
                     case ("2"):
@@ -166,7 +166,7 @@ public class Prog {
     }
 
 
-    public void MainMenu(User u)
+    public void MainMenu(User u , Settings s)
     {
         int flag = 0;
 
@@ -218,16 +218,16 @@ public class Prog {
                             break;
                         case ("4"):
 
-                            p.CreatePredator();
+                            p.CreatePredator(s);
                             break;
                         case ("5"):
-                            h.CreateHerbivores();
+                            h.CreateHerbivores(s);
                             break;
                         case ("6"):
-                            t.addTree();
+                            t.addTree(s);
                             break;
                         case ("7"):
-                            g.addGrass();
+                            g.addGrass(s);
                             break;
                         case ("8"):
                             u.PrintAllUsers();
@@ -244,10 +244,10 @@ public class Prog {
                             System.out.println("\n");
                             break;
                         case ("10"):
-                            p.anihilationAnimals();
+                            p.anihilationAnimals(s);
                             break;
                         case ("11"):
-                            u.DeleteUser(u);
+                            u.DeleteUser(u, s);
                         case ("12"):
                             Logs logs = new Logs();
                             Date date = new Date();

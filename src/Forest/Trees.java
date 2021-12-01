@@ -1,6 +1,7 @@
 package Forest;
 
 import modules_for_the_program.Logs;
+import modules_for_the_program.Settings;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Trees extends Plants
         setPlant_name(name);
     }
 
-    public void addTree()
+    public void addTree(Settings s)
     {
         int flag = 0;
         try {
@@ -33,8 +34,10 @@ public class Trees extends Plants
                 }
                 else{
                     trees.add(temp_name);
-                    Date date = new Date();
-                    l.WriteToLog("Добавлено новое растение типа Trees " + " " + temp_name + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        l.WriteToLog("Добавлено новое растение типа Trees " + " " + temp_name + " " + date.toString() + "\n");
+                    }
                 }
 
             }

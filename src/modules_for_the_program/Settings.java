@@ -36,9 +36,8 @@ public class Settings extends Prog {
         AutoTests = true;
     }
 
-    public Settings ReadFile() {
+    public Settings ReadFile(Settings s) {
         try (BufferedReader reader = new BufferedReader(new FileReader(getFileSettings()))) {
-            Settings s = new Settings();
             String line = reader.readLine();
             String[] strings;
             String delimiter = ":"; //разделитель
@@ -74,6 +73,7 @@ public class Settings extends Prog {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return s;
     }
 
     public Settings ChangeSettingFile(User user, Settings s) {

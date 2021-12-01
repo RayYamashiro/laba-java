@@ -1,6 +1,7 @@
 package Forest;
 
 import modules_for_the_program.Logs;
+import modules_for_the_program.Settings;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;
@@ -21,7 +22,7 @@ public class Grass extends Plants
     }
     ArrayList<String> grass = new ArrayList<>();
 
-    public void addGrass()
+    public void addGrass(Settings s)
     {
         int flag = 0;
         try {
@@ -35,8 +36,10 @@ public class Grass extends Plants
                 }
                 else{
                     grass.add(temp_name);
-                    Date date = new Date();
-                    l.WriteToLog("Добавлено новое растение типа Grass " + " " + temp_name + " " + date.toString() + "\n");
+                    if(s.getLogs()== true) {
+                        Date date = new Date();
+                        l.WriteToLog("Добавлено новое растение типа Grass " + " " + temp_name + " " + date.toString() + "\n");
+                    }
                 }
 
             }
