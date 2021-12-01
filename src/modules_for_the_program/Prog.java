@@ -208,13 +208,13 @@ public class Prog {
                     String l = reader.readLine();
                     switch (l) {
                         case ("1"):
-                            u.ChangePassword(u);
+                            u.ChangePassword(u,s);
                             break;
                         case ("2"):
-                            u.ChangeLogin(u);
+                            u.ChangeLogin(u,s);
                             break;
                         case ("3"):
-                            u.CreateUser();
+                            u.CreateUser(s);
                             break;
                         case ("4"):
 

@@ -25,7 +25,7 @@ public class Program
         s.ReadFile(s);
 
         if(a.getFlagUsersFileNonEmpty() == false ) {
-            user.CreateUser();
+            user.CreateUser(s);
         }
         user.ReadDatabase();
         s.ReadFile(s);
