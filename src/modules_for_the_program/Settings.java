@@ -36,20 +36,21 @@ public class Settings extends Prog {
         AutoTests = true;
     }
 
-    public void ReadFile() {
+    public Settings ReadFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(getFileSettings()))) {
+            Settings s = new Settings();
             String line = reader.readLine();
             String[] strings;
             String delimiter = ":"; //разделитель
-            strings = line.split(delimiter); // разделение строки с по разделителю
+            strings = line.split(delimiter); // разделение строки по разделителю
             if (strings[0].equals("Logs"))  // ищем параметр Logs
             {
                 if (strings[1].equals("true")) {
-                    Logs = true;
+                    s.Logs = true;
                 } else if (strings[1].equals("false")) {
-                    Logs = false;
+                    s.Logs = false;
                 } else {
-                    Logs = true;
+                    s.Logs = true;
                     Date date = new Date();
                     a.WriteToLog("Невозможно считать параметр Logs " + " " + date.toString());
                 }
@@ -60,22 +61,22 @@ public class Settings extends Prog {
             if (strings1[0].equals("Autotests"))  // ищем параметр Logs
             {
                 if (strings1[1].equals("true")) {
-                    AutoTests = true;
+                    s.AutoTests = true;
                 } else if (strings1[1].equals("false")) {
-                    AutoTests = false;
+                    s.AutoTests = false;
                 } else {
-                    AutoTests = true;
+                    s.AutoTests = true;
                     Date date = new Date();
                     a.WriteToLog("Невозможно считать параметр Autotests " + " " + date.toString());
                 }
             }
-
+        return  s;
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void ChangeSettingFile(User user) {
+    public Settings ChangeSettingFile(User user, Settings s) {
         try {
             int flag = 1;
              if (user.getUserStatus() == Status.Admin) {
@@ -111,12 +112,13 @@ public class Settings extends Prog {
                                         bf.newLine();
                                         bf.write(line2);
                                         bf.flush();
+                                        s.Logs = true;
                                         Date date = new Date();
                                         a.WriteToLog("Изменение настройки Logs на true " + " " + date.toString() + "\n");
                                     }
                                     break;
                                 case("2"):
-                                    if (Logs == false)
+                                    if (s.Logs == false)
                                     {
                                         System.out.println("Замена не нужна");
                                     }
@@ -136,6 +138,7 @@ public class Settings extends Prog {
                                         bf.newLine();
                                         bf.write(line2);
                                         bf.flush();
+                                        s.Logs = false;
                                         Date date = new Date();
                                         a.WriteToLog("Изменение настройки Logs на false " + " " + date.toString() + "\n");
                                     }
@@ -152,7 +155,7 @@ public class Settings extends Prog {
                             switch (key1)
                             {
                                 case("1"):
-                                    if (AutoTests == true)
+                                    if (s.AutoTests == true)
                                     {
                                         System.out.println("Замена не нужна");
                                     }
@@ -172,12 +175,13 @@ public class Settings extends Prog {
                                         bf.newLine();
                                         bf.write(sb.toString());
                                         bf.flush();
+                                        s.AutoTests = true;
                                         Date date = new Date();
                                         a.WriteToLog("Изменение настройки Autotests на true " + " " + date.toString() + "\n");
                                     }
                                     break;
                                 case("2"):
-                                    if (AutoTests == false)
+                                    if (s.AutoTests == false)
                                     {
                                         System.out.println("Замена не нужна");
                                     }
@@ -198,6 +202,7 @@ public class Settings extends Prog {
                                         bf.newLine();
                                         bf.write(sb.toString());
                                         bf.flush();
+                                        s.AutoTests = false;
                                         Date date = new Date();
                                         a.WriteToLog("Изменение настройки Autotests на false " + " " + date.toString() + "\n");
                                     }
@@ -220,17 +225,19 @@ public class Settings extends Prog {
             } else {
                 System.out.println("У Вас нет доступа к изменению файла настройки");
             }
+
         }catch(IOException e)
         {
             e.printStackTrace();
         }
+        return s;
     }
 
     public void PrintSettingFile() {
         System.out.println("Считывание файла настроек : " + "\n" + " Logs - " + " " + Logs + "\n" + "Autotests - " + " " + AutoTests + "\n");
     }
 
-    public void SettingMenu(User user)
+    public void SettingMenu(User user , Settings s)
     {
         try {
             PrintSettingFile();
@@ -240,9 +247,9 @@ public class Settings extends Prog {
             switch (l){
                 case("1"):
                     if(user.getEnterUser() == false) {
-                        user.EnterUser();
+                        user.EnterUser(s);
                     }
-                    ChangeSettingFile(user);
+                    ChangeSettingFile(user , s);
                     break;
                 default:
                     return;

@@ -378,7 +378,7 @@ public class User extends Prog {
         ArrayList<String> values1 = new ArrayList<>(admin_pass.keySet());
         System.out.println("Все пользователи с правом доступа admin:" + " " + values1);
     }
-    public void DeleteUser(User user)
+    public void DeleteUser(User user, Settings s)
     {
         try {
             System.out.println("Вы хотите удалить свою учетную запись или другую? " +
@@ -388,20 +388,24 @@ public class User extends Prog {
             String key = reader.readLine();
             do {
                 switch (key) {
-                    case("1"):
-                        if(user.getUserStatus() == Status.Admin)
-                        {
+                    case ("1"):
+                        if (user.getUserStatus() == Status.Admin) {
                             admin_pass.remove(user.getUserName());
                             System.out.println("Был удален пользователь" + user.getUserName() + " " + "Производится выход из программы");
-                            Date date = new Date();
-                            log.WriteToLog("Был удален пользователь c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            if (s.getLogs() == true)
+                            {
+                                Date date = new Date();
+                                log.WriteToLog("Был удален пользователь c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            }
                         }
                         if(user.getUserStatus() == Status.User)
                         {
                             user_pass.remove(user.getUserName());
                             System.out.println("Был удален пользователь" + user.getUserName() + " " + "Производится выход из программы");
-                            Date date = new Date();
-                            log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            if(s.getLogs() == true) {
+                                Date date = new Date();
+                                log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            }
                         }
                         System.exit(0);
                         break;
@@ -414,21 +418,27 @@ public class User extends Prog {
                             {
                                 user_pass.remove(user.getUserName());
                                 System.out.println("Был удален пользователь" + user.getUserName() );
-                                Date date = new Date();
-                                log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
+                                if(s.getLogs() == true) {
+                                    Date date = new Date();
+                                    log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
+                                }
                             }
                             if(admin_pass.containsKey(tempLog))
                             {
                                 admin_pass.remove(user.getUserName());
                                 System.out.println("Был удален пользователь с уровнем доступа admin" + user.getUserName() );
-                                Date date = new Date();
-                                log.WriteToLog("Был удален пользователь с уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                                if(s.getLogs() == true) {
+                                    Date date = new Date();
+                                    log.WriteToLog("Был удален пользователь с уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                                }
                             }
                         }
                         else {
                             System.out.println("Вы не обладаете достаточным уровнем доступа к данной функции");
-                            Date date = new Date();
-                            log.WriteToLog("Была попытка удаления чужого аккаунта из учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            if(s.getLogs() == true) {
+                                Date date = new Date();
+                                log.WriteToLog("Была попытка удаления чужого аккаунта из учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+                            }
                             break;
                         }
                         break;
@@ -445,7 +455,7 @@ public class User extends Prog {
             e.printStackTrace();
         }
     }
-    public User EnterUser()
+    public User EnterUser(Settings s)
     {
         int flag = 0;
         do {
@@ -457,23 +467,29 @@ public class User extends Prog {
                 String tempPas = reader.readLine();
                 if (user_pass.containsKey(tempLogin) && user_pass.containsValue(tempPas)) {
                     System.out.println("Вход произведен в учетную запись" + tempLogin);
-                    Date date = new Date();
-                    log.WriteToLog("Выполнен вход в учетную запись" + " " + tempLogin + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Выполнен вход в учетную запись" + " " + tempLogin + " " + date.toString() + "\n");
+                    }
                     User user = new User(tempLogin, tempPas, Status.User);
                     EnterUser = true;
                     return user;
                 } else if (admin_pass.containsKey(tempLogin) && admin_pass.containsValue(tempPas)) {
                     System.out.println("Вход произведен в учетную запись" + " " +  tempLogin);
-                    Date date = new Date();
-                    log.WriteToLog("Выполнен вход в учетную запись с уровнем доступа admin" + " " + tempLogin + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Выполнен вход в учетную запись с уровнем доступа admin" + " " + tempLogin + " " + date.toString() + "\n");
+                    }
                     User user = new User(tempLogin, tempPas, Status.Admin);
                     EnterUser = true;
                     return  user;
                 } else {
                     System.out.println("Вход не был произведен. Возможна ошибка в логине / пароле или пользователь не существует." + "\n"
                                         + "Хотите попробовать снова? Если да - нажмите 1 , если вы хотите выйти из программы - нажмите любую другую цифру. ");
-                    Date date = new Date();
-                    log.WriteToLog("Выполнен вход в учетную запись  " + " " + tempLogin + " " + "не произведен"  + " " + date.toString() + "\n");
+                    if(s.getLogs() == true) {
+                        Date date = new Date();
+                        log.WriteToLog("Выполнен вход в учетную запись  " + " " + tempLogin + " " + "не произведен" + " " + date.toString() + "\n");
+                    }
                     String flag1 = reader.readLine();
                     if(flag1.equals("1"))
                     {

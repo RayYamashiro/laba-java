@@ -11,7 +11,7 @@ public class Program
 
         Prog a = new Prog();
         Logs logs = new Logs();
-        Settings e = new Settings();
+        Settings s = new Settings();
         User user = new User();
         Date date = new Date();
         logs.WriteToLog( "***** Начало работы программы + " +  " " + date.toString() +" " +  "*****" + " \n");
@@ -28,11 +28,13 @@ public class Program
             user.CreateUser();
         }
         user.ReadDatabase();
-        e.ReadFile();
-        e.PrintSettingFile();
-        a.EnterMenu(user);
-        e.SettingMenu(user);
-        a.MainMenu(user);
+        s.ReadFile();
+        s.PrintSettingFile();
+        a.EnterMenu(user,s);
+        s.SettingMenu(user, s);
+        while (true) {
+            a.MainMenu(user);
+        }
         //user.CreateUser();
         //user.PrintToDatabase();
         //user.ReadDatabase();
@@ -45,6 +47,6 @@ public class Program
         }
 
          */
-        logs.WriteToLog( "***** Завершение работы программы + " +  " " + date.toString() + "*****" +"\n" + "\n" );
+
     }
 }

@@ -133,7 +133,7 @@ public class Prog {
         }
     }
 
-    public void EnterMenu(User user) {
+    public void EnterMenu(User user, Settings s) {
         int flag = 0;
         while (flag != 1) {
             try {
@@ -148,10 +148,12 @@ public class Prog {
                         flag = 1;
                         break;
                     case ("2"):
-                        Date date = new Date();
-                        Logs a = new Logs();
-                        a.WriteToLog("***** Завершение работы программы + " + " " + date.toString() + "*****" + "\n" + "\n");
-                        System.exit(0);
+                        if(s.getLogs() == true) {
+                            Date date = new Date();
+                            Logs a = new Logs();
+                            a.WriteToLog("***** Завершение работы программы + " + " " + date.toString() + "*****" + "\n" + "\n");
+                            System.exit(0);
+                        }
                         break;
                     default:
                         flag = 0;
@@ -191,6 +193,18 @@ public class Prog {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 int flag1 = 0;
                 while(flag1 != 1) {
+                    System.out.println("Сменить пароль....................1" + "\n"
+                                    + "Сменить логин.....................2" + "\n"
+                                    + "Добавить пользователя.............3" + "\n"
+                                    + "Добавить хищника..................4" + "\n"
+                                    + "Добавить травоядное...............5" + "\n"
+                                    + "Добавить дерево...................6" + "\n"
+                                    + "Добавить траву....................7" + "\n"
+                                    + "Вывод всех пользователей..........8" + "\n"
+                                    + "Вывод всех объектов...............9" + "\n"
+                                    + "Пожирание травоядного.............10" + "\n"
+                                    + "Удаление пользователя.............11" + "\n"
+                                    + "Выход из программы................12" + "\n");
                     String l = reader.readLine();
                     switch (l) {
                         case ("1"):
