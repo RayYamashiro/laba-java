@@ -13,8 +13,7 @@ import static java.lang.Integer.parseInt;
 
 public class Predators extends Animals
 {
-    private Map<String, Integer> predators = new HashMap<String, Integer>();
-    private Map<String, Integer> herbivores = new HashMap<String, Integer>();
+    private HashMap<String, Integer> predators = new HashMap<String, Integer>();
     //private Herbivores h = new Herbivores();
     private Logs log = new Logs();
     public Predators()
@@ -32,21 +31,22 @@ public class Predators extends Animals
     public Map getPredators() {
         return predators;
     }
-    public void anihilationAnimals (Settings s)
+    public void anihilationAnimals (Predators p , Herbivores h, Settings s)
     {
         try {
             String line;
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Введите название хищника");
             line = reader.readLine();
-            if (predators.containsKey(line)) {
+            if (p.predators.containsKey(line)) {
                 System.out.println("Введите название травоядного");
                 String line1 = reader.readLine();
-                if (herbivores.containsKey(line)) {
-                    if(predators.get(line) > herbivores.get(line1))
+                if (h.getHerbivores().containsKey(line1)) {
+                    int i = (int) h.getHerbivores().get(line1);  // преобразует тип object в тип integer, хотя я хз почему не работает по обычному , ведь 2 поле хэшкарты это int
+                    if(p.predators.get(line) > i)
                     {
                         System.out.println("Произошло уничтожение травоядного.");
-                        herbivores.remove(line1);
+                        h.getHerbivores().remove(line1);
                         if(s.getLogs() == true) {
                             Date date = new Date();
                             log.WriteToLog("Произошло уничтожение травоядного" + " " + line1 + " " + date.toString() + "\n");
@@ -67,7 +67,7 @@ public class Predators extends Animals
 
     }
 
-    public void CreatePredator(Settings s)
+    public Predators CreatePredator(Predators p ,Settings s)
     {
         System.out.println("Введите название нового хищника");
         try {
@@ -78,13 +78,13 @@ public class Predators extends Animals
                 System.out.println("Такое животное существует, введите другое имя");
                 line = reader.readLine();
             }
-            setAnim_name(line);
+            p.setAnim_name(line);
 
 
             System.out.println("Введите размер нового животного цифрами");
             BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
             int size = parseInt(reader1.readLine());
-            setAnim_size(size);
+            p.setAnim_size(size);
             predators.put(line, size);
             if(s.getLogs() == true) {
                 Date date = new Date();
@@ -97,6 +97,7 @@ public class Predators extends Animals
         {
             System.out.println("Неверно написан размер животного");
         }
+        return p;
     }
 
     public void PredatorsReadDatabase() {

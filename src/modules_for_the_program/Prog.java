@@ -217,11 +217,11 @@ public class Prog {
                             u.CreateUser(u,s);
                             break;
                         case ("4"):
-                            p.CreatePredator(s);
+                            p.CreatePredator(p, s);
                             p.PredatorsWriteDatabase();
                             break;
                         case ("5"):
-                            h.CreateHerbivores(s);
+                            h.CreateHerbivores(h, s);
                             h.HerbivoresWriteDatabase();
                             break;
                         case ("6"):
@@ -247,7 +247,7 @@ public class Prog {
                             System.out.println("\n");
                             break;
                         case ("10"):
-                            p.anihilationAnimals(s);
+                            p.anihilationAnimals(p,h,s);
                             break;
                         case ("11"):
                             u.DeleteUser(u, s);

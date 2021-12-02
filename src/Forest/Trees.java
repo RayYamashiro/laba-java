@@ -68,6 +68,9 @@ public class Trees extends Plants
         {
             e.printStackTrace();
         }
+        catch (NullPointerException i) {
+            return;
+        }
 
     }
     public void TreesWriteDatabase()
@@ -85,6 +88,7 @@ public class Trees extends Plants
         {
             e.printStackTrace();
         }
+
     }
     public void PrintAllTrees()
     {

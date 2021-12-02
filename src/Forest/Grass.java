@@ -70,6 +70,9 @@ public class Grass extends Plants
         {
             e.printStackTrace();
         }
+        catch (NullPointerException i) {
+            return;
+        }
 
     }
     public void GrassWriteDatabase()
@@ -87,6 +90,7 @@ public class Grass extends Plants
         {
             e.printStackTrace();
         }
+
     }
     public void PrintAllGrass()
     {

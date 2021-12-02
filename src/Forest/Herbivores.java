@@ -15,7 +15,7 @@ public class Herbivores extends Animals
 {
     ArrayList<String> edible = new ArrayList<String>();
     ArrayList<String> non_edible = new ArrayList<String>();
-    private Map<String, Integer> herbivores = new HashMap<String, Integer>();
+    private HashMap<String, Integer> herbivores = new HashMap<String, Integer>();
     private Logs log = new Logs();
     public Herbivores(String name , int size)
     {
@@ -33,7 +33,7 @@ public class Herbivores extends Animals
         herbivores= temp;
     }
 
-    public Map getHerbivores() {
+    public HashMap getHerbivores() {
         return herbivores;
     }
     public void addNonEdiblePlant (Trees a )
@@ -74,7 +74,7 @@ public class Herbivores extends Animals
             System.out.println("Растение несъедобное");
     }
 
-    public void CreateHerbivores(Settings s)
+    public Herbivores CreateHerbivores(Herbivores h, Settings s)
     {
         System.out.println("Введите название нового травоядного");
         try {
@@ -85,13 +85,13 @@ public class Herbivores extends Animals
                 System.out.println("Такое животное существует, введите другое имя");
                 line = reader.readLine();
             }
-            setAnim_name(line);
+            h.setAnim_name(line);
 
 
             System.out.println("Введите размер нового животного цифрами");
             BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
             int size = parseInt(reader1.readLine());
-            setAnim_size(size);
+            h.setAnim_size(size);
             herbivores.put(line, size);
             if(s.getLogs()==true) {
                 Date date = new Date();
@@ -104,6 +104,7 @@ public class Herbivores extends Animals
         {
             System.out.println("Неверно написан размер животного");
         }
+        return h;
     }
 
     public void HerbivoresReadDatabase() {
