@@ -64,6 +64,7 @@ public class Trees extends Plants
 
             while (!line.isEmpty()) {
                 trees.add(line);
+                line = reader.readLine();
             }
         }catch (IOException e)
         {

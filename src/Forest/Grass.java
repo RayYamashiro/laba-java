@@ -66,6 +66,7 @@ public class Grass extends Plants
 
             while (!line.isEmpty()) {
                 grass.add(line);
+                line = reader.readLine();
             }
         }catch (IOException e)
         {
