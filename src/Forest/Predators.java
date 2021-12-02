@@ -62,6 +62,10 @@ public class Predators extends Animals
         }catch (IOException e)
         {
             e.printStackTrace();
+        }catch (NullPointerException i)
+        {
+            System.out.println("Какого-то из объектов нет в базе");
+            return;
         }
 
 
