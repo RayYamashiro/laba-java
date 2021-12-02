@@ -139,7 +139,7 @@ public class Herbivores extends Animals
     public void HerbivoresWriteDatabase()
     {
         try {
-            PrintWriter pw = new PrintWriter(getFileNamePredators());   // чистим все, что было в базе данных для корректной записи новой базы
+            PrintWriter pw = new PrintWriter(getFileNameHerbivores());   // чистим все, что было в базе данных для корректной записи новой базы
             pw.close();
             // create new BufferedWriter for the output file
             BufferedWriter bf = new BufferedWriter(new FileWriter(getFileNameHerbivores(), true)); // для последовательной записи в файл

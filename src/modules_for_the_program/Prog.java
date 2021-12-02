@@ -257,8 +257,9 @@ public class Prog {
                             logs.WriteToLog("***** Завершение работы программы " + " " + date.toString() + "*****" + "\n" + "\n");
                             u.PrintToDatabase();
                             p.PredatorsWriteDatabase();
-                            h.HerbivoresWriteDatabase();
-                            t.TreesWriteDatabase();
+                            //h.HerbivoresWriteDatabase();
+                            //t.TreesWriteDatabase();
+                            //g.GrassWriteDatabase();
                             System.exit(0);
                     }
                 }
