@@ -26,7 +26,7 @@ public class Trees extends Plants
         try {
             while (flag != 1) {
 
-
+                System.out.println("Введите название дерева");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 String temp_name = reader.readLine();
                 if (trees.equals(temp_name)) {
