@@ -256,6 +256,9 @@ public class Prog {
                             Date date = new Date();
                             logs.WriteToLog("***** Завершение работы программы " + " " + date.toString() + "*****" + "\n" + "\n");
                             u.PrintToDatabase();
+                            p.PredatorsWriteDatabase();
+                            h.HerbivoresWriteDatabase();
+                            t.TreesWriteDatabase();
                             System.exit(0);
                     }
                 }
