@@ -39,6 +39,7 @@ public class Grass extends Plants
                     if(s.getLogs()== true) {
                         Date date = new Date();
                         l.WriteToLog("Добавлено новое растение типа Grass " + " " + temp_name + " " + date.toString() + "\n");
+                        flag = 1;
                     }
                 }
 
