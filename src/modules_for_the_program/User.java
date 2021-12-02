@@ -79,8 +79,7 @@ public class User extends Prog {
         return  EnterUser;
     }
 
-    public User CreateUser(Settings s) {
-        User user = new User();
+    public User CreateUser(User user, Settings s) {
         System.out.println("Введите login нового пользователя");
         try {
             String line;

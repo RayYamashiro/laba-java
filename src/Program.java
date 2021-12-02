@@ -27,7 +27,7 @@ public class Program
             logs.WriteToLog("***** Начало работы программы + " + " " + date.toString() + " " + "*****" + " \n");
         }
         if(a.getFlagUsersFileNonEmpty() == false ) {
-            user.CreateUser(s);
+            user.CreateUser(user,s);
         }
         user.ReadDatabase();
         s.ReadFile(s);

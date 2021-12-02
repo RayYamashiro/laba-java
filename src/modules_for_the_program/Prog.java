@@ -214,7 +214,7 @@ public class Prog {
                             u.ChangeLogin(u,s);
                             break;
                         case ("3"):
-                            u.CreateUser(s);
+                            u.CreateUser(u,s);
                             break;
                         case ("4"):
 
@@ -251,7 +251,8 @@ public class Prog {
                         case ("12"):
                             Logs logs = new Logs();
                             Date date = new Date();
-                            logs.WriteToLog("***** Завершение работы программы + " + " " + date.toString() + "*****" + "\n" + "\n");
+                            logs.WriteToLog("***** Завершение работы программы " + " " + date.toString() + "*****" + "\n" + "\n");
+                            u.PrintToDatabase();
                             System.exit(0);
                     }
                 }

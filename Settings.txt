@@ -1,2 +1,2 @@
-Logs:false
+Logs:true
 Autotests:true
