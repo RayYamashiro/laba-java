@@ -276,98 +276,108 @@ public class User extends Prog {
 
     public void ChangePassword(User user, Settings s)
     {
-        if(user_pass.containsKey(user.getUserName()))
-        {
-            if(user_pass.containsValue(user.getPassword()))
-            {
-                try {
-                    System.out.println("Введите новый пароль");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    String newPass = reader.readLine();
-                    user_pass.put(user.getUserName(), newPass);
-                    System.out.println("Пароль был изменен");
-                    if(s.getLogs() == true) {
-                        Date date = new Date();
-                        log.WriteToLog("Был изменен пароль в учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+        try {
+            System.out.println("Введите  логин");
+            BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
+            String login = reader1.readLine();
+            if (user_pass.containsKey(login)) {
+                System.out.println("Введите старый пароль");
+                String old_pas = reader1.readLine();
+                if (user_pass.containsValue(old_pas)) {
+                    try {
+                        System.out.println("Введите новый пароль");
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                        String newPass = reader.readLine();
+                        user_pass.remove(login);
+                        user_pass.put(login, newPass);
+                        System.out.println("Пароль был изменен");
+                        reader1.close();
+                        if (s.getLogs() == true) {
+                            Date date = new Date();
+                            log.WriteToLog("Был изменен пароль в учетной записи" + " " + user.getUserName() + " " + date.toString() + "\n");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                }catch (IOException e)
-                {
-                    e.printStackTrace();
                 }
             }
-        }
-        else
-        {
-            System.out.println("Такого пользователя нет");
-            return;
-        }
-        if(admin_pass.containsKey(user.getUserName()))
-        {
-            if(admin_pass.containsValue(user.getPassword()))
-            {
-                try {
-                    System.out.println("Введите новый пароль");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    String newPass = reader.readLine();
-                    admin_pass.put(user.getUserName(), newPass);
-                    System.out.println("Пароль был изменен");
-                    if(s.getLogs() == true) {
-                        Date date = new Date();
-                        log.WriteToLog("Был изменен пароль в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+
+            if (admin_pass.containsKey(login)) {
+                System.out.println("Введите старый пароль");
+                String old_pas = reader1.readLine();
+                if (admin_pass.containsValue(old_pas)) {
+                    try {
+                        System.out.println("Введите новый пароль");
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                        String newPass = reader.readLine();
+                        admin_pass.remove(login);
+                        admin_pass.put(login, newPass);
+
+                        System.out.println("Пароль был изменен");
+                        reader1.close();
+                        if (s.getLogs() == true) {
+                            Date date = new Date();
+                            log.WriteToLog("Был изменен пароль в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                }catch (IOException e)
-                {
-                    e.printStackTrace();
+                } else {
+                    System.out.println("Такого пользователя нет");
+                    return;
                 }
             }
-            else
-            {
-                System.out.println("Такого пользователя нет");
-                return;
-            }
+        }catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
     public void ChangeLogin(User user, Settings s)
     {
-        if(user_pass.containsKey(user.getUserName()))
-        {
-            if(user_pass.containsValue(user.getPassword()))
+        try {
+            System.out.println("Введите старый логин");
+            BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
+            String old_login = reader1.readLine();
+            if(user_pass.containsKey(old_login))
             {
-                try {
-                    System.out.println("Введите новый login");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    String newLog = reader.readLine();
-                    String pass = user_pass.get(user.getUserName());
-                    user_pass.remove(user.getUserName());
-                    user_pass.put(newLog , pass);
-                    System.out.println("Логин был изменен");
-                    if(s.getLogs() == true) {
-                        Date date = new Date();
-                        log.WriteToLog("Был изменен логин в учетной записи" + " " + user.getUserName() + " " + "новый логин-" + " " + newLog + date.toString() + "\n");
+                System.out.println("Введите пароль");
+                String pas = reader1.readLine();
+                if(user_pass.containsValue(pas)) {
+                    try {
+                        System.out.println("Введите новый login");
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                        String newLog = reader.readLine();
+                        user_pass.remove(old_login);
+                        user_pass.put(newLog, pas);
+                        System.out.println("Логин был изменен");
+                        reader1.close();
+                        if (s.getLogs() == true) {
+                            Date date = new Date();
+                            log.WriteToLog("Был изменен логин в учетной записи" + " " + user.getUserName() + " " + "новый логин-" + " " + newLog + date.toString() + "\n");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                }catch (IOException e)
-                {
-                    e.printStackTrace();
                 }
-            }
         }
-        else
+
+
+
+        if(admin_pass.containsKey(old_login))
         {
-            System.out.println("Такого пользователя нет");
-            return;
-        }
-        if(admin_pass.containsKey(user.getUserName()))
-        {
-            if(admin_pass.containsValue(user.getPassword()))
+            System.out.println("Введите пароль");
+            String pas_ad = reader1.readLine();
+            if(admin_pass.containsValue(pas_ad))
             {
                 try {
                     System.out.println("Введите новый login");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                     String newLog = reader.readLine();
-                    String pass = admin_pass.get(user.getUserName());
-                    admin_pass.remove(user.getUserName());
-                    admin_pass.put(newLog , pass);
+
+                    admin_pass.remove(old_login);
+                    admin_pass.put(newLog , pas_ad);
                     System.out.println("Логин был изменен");
+                    reader1.close();
                     if(s.getLogs() == true) {
                         Date date = new Date();
                         log.WriteToLog("Был изменен логин в учетной записи c уровнем доступа admin" + " " + user.getUserName() + " "
@@ -383,6 +393,10 @@ public class User extends Prog {
         {
             System.out.println("Такого пользователя нет");
             return;
+        }
+        }catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
     public void PrintAllUsers()
