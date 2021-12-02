@@ -414,10 +414,14 @@ public class User extends Prog {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             int keySw = 0;
             String key = reader.readLine();
+            System.out.println("Введите свой логин");
+            String login = reader.readLine();
+            System.out.println("Введите пароль админа");
+            String temp_pas = reader.readLine();
             do {
                 switch (key) {
                     case ("1"):
-                        if (user.getUserStatus() == Status.Admin) {
+                        if (user.admin_pass.containsKey(login) & admin_password.equals(temp_pas)) {
                             admin_pass.remove(user.getUserName());
                             System.out.println("Был удален пользователь" + user.getUserName() + " " + "Производится выход из программы");
                             if (s.getLogs() == true)
@@ -426,7 +430,7 @@ public class User extends Prog {
                                 log.WriteToLog("Был удален пользователь c уровнем доступа admin" + " " + user.getUserName() + " " + date.toString() + "\n");
                             }
                         }
-                        if(user.getUserStatus() == Status.User)
+                        if(user.user_pass.containsKey(login))
                         {
                             user_pass.remove(user.getUserName());
                             System.out.println("Был удален пользователь" + user.getUserName() + " " + "Производится выход из программы");
@@ -434,6 +438,7 @@ public class User extends Prog {
                                 Date date = new Date();
                                 log.WriteToLog("Был удален пользователь" + " " + user.getUserName() + " " + date.toString() + "\n");
                             }
+                            user.PrintToDatabase();
                         }
                         System.exit(0);
                         break;
