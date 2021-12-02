@@ -247,7 +247,7 @@ public class Settings extends Prog {
             switch (l){
                 case("1"):
                     if(user.getEnterUser() == false) {
-                        user.EnterUser(s);
+                        user.EnterUser(user, s);
                     }
                     ChangeSettingFile(user , s);
                     break;

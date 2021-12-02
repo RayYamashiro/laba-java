@@ -144,7 +144,7 @@ public class Prog {
                 String l = reader.readLine();
                 switch (l) {
                     case ("1"):
-                        user.EnterUser(s);
+                        user = user.EnterUser(user, s);
                         flag = 1;
                         break;
                     case ("2"):

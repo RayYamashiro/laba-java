@@ -488,7 +488,7 @@ public class User extends Prog {
             e.printStackTrace();
         }
     }
-    public User EnterUser(Settings s)
+    public User EnterUser(User user ,  Settings s)
     {
         int flag = 0;
         do {
@@ -504,7 +504,10 @@ public class User extends Prog {
                         Date date = new Date();
                         log.WriteToLog("Выполнен вход в учетную запись" + " " + tempLogin + " " + date.toString() + "\n");
                     }
-                    User user = new User(tempLogin, tempPas, Status.User);
+                    user.setUserStatus(Status.User);
+                    user.setUserName(tempLogin);
+                    user.setPassword(tempPas);
+
                     EnterUser = true;
                     return user;
                 } else if (admin_pass.containsKey(tempLogin) && admin_pass.containsValue(tempPas)) {
@@ -513,7 +516,9 @@ public class User extends Prog {
                         Date date = new Date();
                         log.WriteToLog("Выполнен вход в учетную запись с уровнем доступа admin" + " " + tempLogin + " " + date.toString() + "\n");
                     }
-                    User user = new User(tempLogin, tempPas, Status.Admin);
+                    user.setUserStatus(Status.Admin);
+                    user.setUserName(tempLogin);
+                    user.setPassword(tempPas);
                     EnterUser = true;
                     return  user;
                 } else {
