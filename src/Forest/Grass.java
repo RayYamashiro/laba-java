@@ -28,7 +28,7 @@ public class Grass extends Plants
         try {
             while (flag != 1) {
 
-
+                System.out.println("Введите название травы");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 String temp_name = reader.readLine();
                 if (grass.equals(temp_name)) {
