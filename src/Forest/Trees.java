@@ -88,6 +88,6 @@ public class Trees extends Plants
     }
     public void PrintAllTrees()
     {
-        System.out.println(trees.toString());
+        System.out.println("Все растения типа Trees:" + " " + trees.toString());
     }
 }

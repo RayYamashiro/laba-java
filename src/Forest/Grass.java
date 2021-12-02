@@ -90,6 +90,6 @@ public class Grass extends Plants
     }
     public void PrintAllGrass()
     {
-        System.out.println(grass.toString());
+        System.out.println("Все растения типа Grass:" + " " + grass.toString());
     }
 }

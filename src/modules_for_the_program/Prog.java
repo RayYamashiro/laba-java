@@ -166,7 +166,7 @@ public class Prog {
     }
 
 
-    public void MainMenu(User u , Settings s)
+    public void MainMenu(User u , Settings s , Predators p,Herbivores h,Grass g,Trees t   )
     {
         int flag = 0;
 
@@ -186,10 +186,10 @@ public class Prog {
                                  + "Удаление пользователя.............11" + "\n"
                                  + "Выход из программы................12" + "\n"
                 );
-                Predators p = new Predators();
-                Herbivores h = new Herbivores();
-                Grass g = new Grass();
-                Trees t = new Trees();
+                //Predators p = new Predators();
+                //Herbivores h = new Herbivores();
+                //Grass g = new Grass();
+                //Trees t = new Trees();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 int flag1 = 0;
                 while(flag1 != 1) {
@@ -217,17 +217,20 @@ public class Prog {
                             u.CreateUser(u,s);
                             break;
                         case ("4"):
-
                             p.CreatePredator(s);
+                            p.PredatorsWriteDatabase();
                             break;
                         case ("5"):
                             h.CreateHerbivores(s);
+                            h.HerbivoresWriteDatabase();
                             break;
                         case ("6"):
                             t.addTree(s);
+                            t.TreesWriteDatabase();
                             break;
                         case ("7"):
                             g.addGrass(s);
+                            g.GrassWriteDatabase();
                             break;
                         case ("8"):
                             u.PrintAllUsers();

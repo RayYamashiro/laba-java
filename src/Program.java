@@ -14,6 +14,10 @@ public class Program
         Settings s = new Settings();
         User user = new User();
         Date date = new Date();
+        Predators p = new Predators();
+        Herbivores h = new Herbivores();
+        Grass g = new Grass();
+        Trees t = new Trees();
 
         a.LogsFileCheckCreation();
         a.UserFileCheckCreation();
@@ -23,8 +27,12 @@ public class Program
         a.getFlagUsersFileNonEmpty();
         a.SettingFileCheckCreation();
         s.ReadFile(s);
+        p.PredatorsReadDatabase();
+        h.HerbivoresReadDatabase();
+        g.GrassReadDatabase();
+        t.TreesReadDatabase();
         if(s.getLogs() == true) {
-            logs.WriteToLog("***** Начало работы программы + " + " " + date.toString() + " " + "*****" + " \n");
+            logs.WriteToLog("***** Начало работы программы  " + " " + date.toString() + " " + "*****" + " \n");
         }
         if(a.getFlagUsersFileNonEmpty() == false ) {
             user.CreateUser(user,s);
@@ -35,7 +43,7 @@ public class Program
         a.EnterMenu(user,s);
         s.SettingMenu(user, s);
         while (true) {
-            a.MainMenu(user,s);
+            a.MainMenu(user , s ,p ,h ,g , t);
         }
         //user.CreateUser();
         //user.PrintToDatabase();
