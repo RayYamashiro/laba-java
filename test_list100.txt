@@ -1,0 +1,121 @@
+Start program Sun Dec 05 12:45:15 MSK 2021
+HashMap
+add ID = 0, 145206
+add ID = 1, 243433
+add ID = 2, 160002
+add ID = 3, 124347
+add ID = 4, 802465
+add ID = 5, 483141
+add ID = 6, 358513
+add ID = 7, 120865
+add ID = 8, 785187
+add ID = 9, 295573
+add ID = 10, 683149
+add ID = 11, 759691
+add ID = 12, 575399
+add ID = 13, 996835
+add ID = 14, 598710
+add ID = 15, 926994
+add ID = 16, 696189
+add ID = 17, 212134
+add ID = 18, 810092
+add ID = 19, 834833
+add ID = 20, 8228
+add ID = 21, 786599
+add ID = 22, 795350
+add ID = 23, 327181
+add ID = 24, 438795
+add ID = 25, 338800
+add ID = 26, 116991
+add ID = 27, 168126
+add ID = 28, 237348
+add ID = 29, 32672
+add ID = 30, 789610
+add ID = 31, 466594
+add ID = 32, 40122
+add ID = 33, 433603
+add ID = 34, 936062
+add ID = 35, 72575
+add ID = 36, 996007
+add ID = 37, 635720
+add ID = 38, 199745
+add ID = 39, 991751
+add ID = 40, 956876
+add ID = 41, 199963
+add ID = 42, 897144
+add ID = 43, 608618
+add ID = 44, 267828
+add ID = 45, 826315
+add ID = 46, 692657
+add ID = 47, 782566
+add ID = 48, 6235
+add ID = 49, 98592
+add ID = 50, 656812
+add ID = 51, 687064
+add ID = 52, 613227
+add ID = 53, 86496
+add ID = 54, 929347
+add ID = 55, 599030
+add ID = 56, 737231
+add ID = 57, 67174
+add ID = 58, 850215
+add ID = 59, 713590
+add ID = 60, 766406
+add ID = 61, 137296
+add ID = 62, 344429
+add ID = 63, 458886
+add ID = 64, 965269
+add ID = 65, 26732
+add ID = 66, 550787
+add ID = 67, 716216
+add ID = 68, 350577
+add ID = 69, 996169
+add ID = 70, 169825
+add ID = 71, 812747
+add ID = 72, 442458
+add ID = 73, 303578
+add ID = 74, 772987
+add ID = 75, 147159
+add ID = 76, 809056
+add ID = 77, 358196
+add ID = 78, 362836
+add ID = 79, 833037
+add ID = 80, 886394
+add ID = 81, 345761
+add ID = 82, 803225
+add ID = 83, 800460
+add ID = 84, 899905
+add ID = 85, 804998
+add ID = 86, 348717
+add ID = 87, 383163
+add ID = 88, 840065
+add ID = 89, 362915
+add ID = 90, 394128
+add ID = 91, 536814
+add ID = 92, 351760
+add ID = 93, 595246
+add ID = 94, 737925
+add ID = 95, 483346
+add ID = 96, 85526
+add ID = 97, 768413
+add ID = 98, 107311
+add ID = 99, 756987
+addTotalCount 100
+addTotalTime 57500
+addMedianTime 32168
+
+remove ID = 51, 687064
+remove ID = 3, 124347
+remove ID = 41, 199963
+remove ID = 32, 40122
+remove ID = 57, 67174
+remove ID = 54, 929347
+remove ID = 80, 886394
+remove ID = 19, 834833
+remove ID = 71, 812747
+remove ID = 74, 772987
+removeTotalCount 10
+removeTotalTime 64000
+removeMedianTime 640
+
+Finish program Sun Dec 05 12:45:15 MSK 2021

@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 import Forest.*;
+
 import java.util.Date;
 import modules_for_the_program.*;
 
@@ -18,7 +19,7 @@ public class Program
         Herbivores h = new Herbivores();
         Grass g = new Grass();
         Trees t = new Trees();
-
+        /*
         a.LogsFileCheckCreation();
         a.UserFileCheckCreation();
         a.LogsFileCheckFilling();
@@ -49,14 +50,20 @@ public class Program
         //user.PrintToDatabase();
         //user.ReadDatabase();
         //System.out.println(user.toString());
-        /*
-        if (a.getFlagUsersFileNonEmpty() != true) {
-            System.out.println("Нет пользователей,необходимо создание нового");
-            User user = new User();
-            user.CreateUser();
-        }
 
          */
+        // для Hashmap
+        p.Laba4(10);
+        p.Laba4(100);
+        p.Laba4(1000);
+        p.Laba4(10000);
+        p.Laba4(100000);
+
+        g.Laba4_list(10);
+        g.Laba4_list(100);
+        g.Laba4_list(1000);
+        g.Laba4_list(10000);
+        g.Laba4_list(100000);
 
     }
 }

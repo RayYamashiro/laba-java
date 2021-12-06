@@ -1,0 +1,22 @@
+Start program Sun Dec 05 12:45:15 MSK 2021
+HashMap
+add ID = 0, 911489
+add ID = 1, 324668
+add ID = 2, 945520
+add ID = 3, 464328
+add ID = 4, 489307
+add ID = 5, 281400
+add ID = 6, 761078
+add ID = 7, 821638
+add ID = 8, 984385
+add ID = 9, 502818
+addTotalCount 10
+addTotalTime 145200
+addMedianTime 129350
+
+remove ID = 7, 821638
+removeTotalCount 1
+removeTotalTime 176800
+removeMedianTime 17680
+
+Finish program Sun Dec 05 12:45:15 MSK 2021

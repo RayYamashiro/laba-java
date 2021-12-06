@@ -164,4 +164,87 @@ public class Predators extends Animals
         ArrayList<String> values = new ArrayList<>(predators.keySet());
         System.out.println("Все животные типа Predators:" + " " + values);
     }
+
+    public void Laba4(int count)
+    {
+        ArrayList<Integer> same_number = new ArrayList<>();
+        Date date = new Date();
+        Predators p = new Predators();
+        String str = "";
+        String filename = "test"+count+".txt";
+        StringBuffer strBuffer = new StringBuffer(str);
+        String str0 = ( "Start program" + " " + date.toString()  + "\n" + "HashMap" + "\n" );
+        strBuffer.append(str0);
+        long startTime = System.nanoTime();
+        int total_count = count;
+        long all_time = 0;
+        for(int i =0 ; i < total_count ; i++)
+        {
+            int temp_number = (int) (Math.random()*1000000);
+            p.getPredators().put(i , temp_number);
+            long av = System.nanoTime() - startTime;
+            all_time += av;
+            String str2 = str + "add ID = " + i  + ", " + p.getPredators().get(i) + "\n" ;
+            strBuffer.append(str2);
+        }
+
+        long estimatedTime = System.nanoTime() - startTime;
+        strBuffer.append("addTotalCount" + " " + total_count + "\n" );
+        strBuffer.append("addTotalTime " + estimatedTime + "\n");
+        long finish1 = all_time/total_count;
+        strBuffer.append( "addMedianTime " + finish1 + "\n" + "\n");
+        all_time = 0;
+        estimatedTime = 0;
+        startTime = System.nanoTime();
+        int total_remove = (int) total_count / 10;
+        for(int i =0 ; i < total_remove; i++)
+        {
+
+            int temp_number = (int) (Math.random()*total_count-1);
+
+            if(same_number.contains(temp_number))
+            {
+                i--;
+                continue;
+            }
+            same_number.add(temp_number);
+            //long avm = System.nanoTime() - startTime;
+            int id = (int) p.getPredators().get(temp_number);
+            p.getPredators().remove(temp_number);
+            //long av = System.nanoTime() - startTime ;
+            //all_time += av;
+            estimatedTime = System.nanoTime() - startTime;
+            String str2 = str + "remove ID = " + temp_number  + ", " + id + "\n" ;
+            strBuffer.append(str2);
+        }
+        //estimatedTime = System.nanoTime() - startTime;
+        strBuffer.append("removeTotalCount" + " " + total_remove + "\n" );
+        strBuffer.append("removeTotalTime " + estimatedTime + "\n");
+        //long finish = all_time/total_remove;
+        strBuffer.append("removeMedianTime " + estimatedTime/count + "\n" + "\n");
+
+        String str10 = ( "Finish program" + " " + date.toString()  + "\n");
+
+        strBuffer.append(str10);
+        try {
+            FileWriter writer = new FileWriter(filename, false);
+            PrintWriter pw = new PrintWriter(filename);   // чистим все, что было в базе данных для корректной записи новой базы
+            pw.close();
+            //BufferedWriter bf = new BufferedWriter(new FileWriter("test10.txt", true));
+            writer.write(strBuffer.toString());
+            writer.flush();
+        }catch (FileNotFoundException e)
+        {
+            try {
+                File file10 = new File(filename);
+                file10.createNewFile();
+            }catch (IOException er)
+            {
+                er.printStackTrace();
+            }
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
