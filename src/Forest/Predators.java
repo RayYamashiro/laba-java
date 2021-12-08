@@ -177,23 +177,25 @@ public class Predators extends Animals
         strBuffer.append(str0);
         long startTime = System.nanoTime();
         int total_count = count;
-        long all_time = 0;
+        //ong all_time = 0;
+        long estimatedTime = 0;
         for(int i =0 ; i < total_count ; i++)
         {
             int temp_number = (int) (Math.random()*1000000);
             p.getPredators().put(i , temp_number);
-            long av = System.nanoTime() - startTime;
-            all_time += av;
+            //long av = System.nanoTime() - startTime;
+            //all_time += av;
+            estimatedTime = System.nanoTime() - startTime;
             String str2 = str + "add ID = " + i  + ", " + p.getPredators().get(i) + "\n" ;
             strBuffer.append(str2);
         }
 
-        long estimatedTime = System.nanoTime() - startTime;
+
         strBuffer.append("addTotalCount" + " " + total_count + "\n" );
         strBuffer.append("addTotalTime " + estimatedTime + "\n");
-        long finish1 = all_time/total_count;
+        long finish1 = estimatedTime/total_count;
         strBuffer.append( "addMedianTime " + finish1 + "\n" + "\n");
-        all_time = 0;
+        //all_time = 0;
         estimatedTime = 0;
         startTime = System.nanoTime();
         int total_remove = (int) total_count / 10;
