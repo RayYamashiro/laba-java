@@ -4,13 +4,11 @@ import Forest.*;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
-import modules_for_the_program.*;
+
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Group;
-import javafx.scene.text.Text;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.CategoryAxis;
@@ -21,15 +19,15 @@ public class Program extends Application
     public static void main (String [] args)
     {
 
-        Prog a = new Prog();
-        Logs logs = new Logs();
-        Settings s = new Settings();
-        User user = new User();
-        Date date = new Date();
-        Predators p = new Predators();
-        Herbivores h = new Herbivores();
-        Grass g = new Grass();
-        Trees t = new Trees();
+//        Prog a = new Prog();
+//        Logs logs = new Logs();
+//        Settings s = new Settings();
+//        User user = new User();
+//        Date date = new Date();
+//        Predators p = new Predators();
+//        Herbivores h = new Herbivores();
+//        Grass g = new Grass();
+//        Trees t = new Trees();
 
 
 
@@ -87,88 +85,101 @@ public class Program extends Application
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage)  {
 
         stage.setTitle("Line Chart Sample");
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Количество элементов");
-        yAxis.setLabel("Время");
-        final LineChart<Number,Number> lineChart =
-                new LineChart<Number,Number>(xAxis,yAxis);
+        final CategoryAxis xAxis = new CategoryAxis();
+         final NumberAxis yAxis = new NumberAxis();
+         xAxis.setLabel("Elements");
 
+         final LineChart<String,Number> lineChart =
+                new LineChart<String,Number>(xAxis,yAxis);
+
+        final LineChart<String,Number> lineChart2 =
+                new LineChart<String,Number>(xAxis,yAxis);
+        final LineChart<String,Number> lineChart3 =
+                new LineChart<String,Number>(xAxis,yAxis);
+        final LineChart<String,Number> lineChart4 =
+                new LineChart<String,Number>(xAxis,yAxis);
         lineChart.setTitle("Анализ HashMap и ArrayList");
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("HashMap/среднее время добавления");
 
-        series1.getData().add(new XYChart.Data(10, 689210));
-        series1.getData().add(new XYChart.Data(100, 6372));
-        series1.getData().add(new XYChart.Data(1000, 4810));
-        series1.getData().add(new XYChart.Data(10000, 5035));
-        series1.getData().add(new XYChart.Data(100000, 606));
+        series1.getData().add(new XYChart.Data("10", 689210));
+        series1.getData().add(new XYChart.Data("100", 6372));
+        series1.getData().add(new XYChart.Data("1000", 4810));
+        series1.getData().add(new XYChart.Data("10000", 5035));
+        series1.getData().add(new XYChart.Data("100000", 606));
 
 
         XYChart.Series series2 = new XYChart.Series();
         series2.setName("ArrayList/среднее время добавления");
-        series2.getData().add(new XYChart.Data(10, 15399));
-        series2.getData().add(new XYChart.Data(100, 683));
-        series2.getData().add(new XYChart.Data(1000, 627));
-        series2.getData().add(new XYChart.Data(10000, 380));
-        series2.getData().add(new XYChart.Data(100000, 418));
+        series2.getData().add(new XYChart.Data("10", 15399));
+        series2.getData().add(new XYChart.Data("100", 683));
+        series2.getData().add(new XYChart.Data("1000", 627));
+        series2.getData().add(new XYChart.Data("10000", 380));
+        series2.getData().add(new XYChart.Data("100000", 418));
 
 
         XYChart.Series series3 = new XYChart.Series();
         series3.setName("HashMap/среднее время удаления");
-        series3.getData().add(new XYChart.Data(10, 22200));
-        series3.getData().add(new XYChart.Data(100, 7270));
-        series3.getData().add(new XYChart.Data(1000, 4810));
-        series3.getData().add(new XYChart.Data(10000, 5035));
-        series3.getData().add(new XYChart.Data(100000, 9550));
+        series3.getData().add(new XYChart.Data("10", 22200));
+        series3.getData().add(new XYChart.Data("100", 7270));
+        series3.getData().add(new XYChart.Data("1000", 4810));
+        series3.getData().add(new XYChart.Data("10000", 5035));
+        series3.getData().add(new XYChart.Data("100000", 9550));
 
         XYChart.Series series4 = new XYChart.Series();
         series4.setName("ArrayList/среднее время удаления");
-        series4.getData().add(new XYChart.Data(10, 186300));
-        series4.getData().add(new XYChart.Data(100, 4769));
-        series4.getData().add(new XYChart.Data(1000, 28119));
-        series4.getData().add(new XYChart.Data(10000, 26258));
-        series4.getData().add(new XYChart.Data(100000, 120603));
+        series4.getData().add(new XYChart.Data("10", 186300));
+        series4.getData().add(new XYChart.Data("100", 4769));
+        series4.getData().add(new XYChart.Data("1000", 28119));
+        series4.getData().add(new XYChart.Data("10000", 26258));
+        series4.getData().add(new XYChart.Data("100000", 120603));
 
         XYChart.Series series5 = new XYChart.Series();
         series5.setName("HashMap/общее время удаления");
-        series5.getData().add(new XYChart.Data(10, 22200));
-        series5.getData().add(new XYChart.Data(100, 72700));
-        series5.getData().add(new XYChart.Data(1000, 481099));
-        series5.getData().add(new XYChart.Data(10000, 5035400));
-        series5.getData().add(new XYChart.Data(100000, 95507600));
+        series5.getData().add(new XYChart.Data("10", 22200));
+        series5.getData().add(new XYChart.Data("100", 72700));
+        series5.getData().add(new XYChart.Data("1000", 481099));
+        series5.getData().add(new XYChart.Data("10000", 5035400));
+        series5.getData().add(new XYChart.Data("100000", 95507600));
 
         XYChart.Series series6 = new XYChart.Series();
         series6.setName("ArrayList/общее время удаления");
-        series6.getData().add(new XYChart.Data(10, 186300));
-        series6.getData().add(new XYChart.Data(100, 47699));
-        series6.getData().add(new XYChart.Data(1000, 2811999));
-        series6.getData().add(new XYChart.Data(10000, 26258400));
-        series6.getData().add(new XYChart.Data(100000, 1206035500));
+        series6.getData().add(new XYChart.Data("10", 186300));
+        series6.getData().add(new XYChart.Data("100", 47699));
+        series6.getData().add(new XYChart.Data("1000", 2811999));
+        series6.getData().add(new XYChart.Data("10000", 26258400));
+        series6.getData().add(new XYChart.Data("100000", 1206035500));
 
         XYChart.Series series7 = new XYChart.Series();
         series7.setName("HashMap/общее время добавления");
-        series7.getData().add(new XYChart.Data(10, 6892100));
-        series7.getData().add(new XYChart.Data(100, 637200));
-        series7.getData().add(new XYChart.Data(1000, 3791200));
-        series7.getData().add(new XYChart.Data(10000, 11183900));
-        series7.getData().add(new XYChart.Data(100000, 60635200));
+        series7.getData().add(new XYChart.Data("10", 6892100));
+        series7.getData().add(new XYChart.Data("100", 637200));
+        series7.getData().add(new XYChart.Data("1000", 3791200));
+        series7.getData().add(new XYChart.Data("10000", 11183900));
+        series7.getData().add(new XYChart.Data("100000", 60635200));
 
         XYChart.Series series8 = new XYChart.Series();
         series8.setName("ArrayList/общее время добавления");
-        series8.getData().add(new XYChart.Data(10, 153999));
-        series8.getData().add(new XYChart.Data(100, 68300));
-        series8.getData().add(new XYChart.Data(1000, 627601));
-        series8.getData().add(new XYChart.Data(10000, 3801799));
-        series8.getData().add(new XYChart.Data(100000, 41892400));
-        Scene scene  = new Scene(lineChart,800,600);
-        lineChart.getData().addAll(series1, series2, series3, series4);
+        series8.getData().add(new XYChart.Data("10", 153999));
+        series8.getData().add(new XYChart.Data("100", 68300));
+        series8.getData().add(new XYChart.Data("1000", 627601));
+        series8.getData().add(new XYChart.Data("10000", 3801799));
+        series8.getData().add(new XYChart.Data("100000", 41892400));
+
+
+        Scene scene  = new Scene(lineChart2,800,800);
+        lineChart.getData().addAll(series1, series2);
+        lineChart2.getData().addAll(series3, series4);
+        lineChart3.getData().addAll(series5, series6);
+        lineChart4.getData().addAll(series7, series8);
+
 
         stage.setScene(scene);
+
         stage.show();
     }
 }
