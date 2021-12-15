@@ -70,7 +70,7 @@ public class Program extends Application
 
          */
 
-        // для Hashmap
+//        // для Hashmap
 //        p.Laba4(10);
 //        p.Laba4(100);
 //        p.Laba4(1000);
@@ -90,62 +90,83 @@ public class Program extends Application
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Line Chart Sample");
-        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Month");
-        final LineChart<String,Number> lineChart =
-                new LineChart<String,Number>(xAxis,yAxis);
+        xAxis.setLabel("Количество элементов");
+        yAxis.setLabel("Время");
+        final LineChart<Number,Number> lineChart =
+                new LineChart<Number,Number>(xAxis,yAxis);
 
-        lineChart.setTitle("Stock Monitoring, 2010");
+        lineChart.setTitle("Анализ HashMap и ArrayList");
 
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Portfolio 1");
+        series1.setName("HashMap/среднее время добавления");
 
-        series1.getData().add(new XYChart.Data("Jan", 23));
-        series1.getData().add(new XYChart.Data("Feb", 14));
-        series1.getData().add(new XYChart.Data("Mar", 15));
-        series1.getData().add(new XYChart.Data("Apr", 24));
-        series1.getData().add(new XYChart.Data("May", 34));
-        series1.getData().add(new XYChart.Data("Jun", 36));
-        series1.getData().add(new XYChart.Data("Jul", 22));
-        series1.getData().add(new XYChart.Data("Aug", 45));
-        series1.getData().add(new XYChart.Data("Sep", 43));
-        series1.getData().add(new XYChart.Data("Oct", 17));
-        series1.getData().add(new XYChart.Data("Nov", 29));
-        series1.getData().add(new XYChart.Data("Dec", 25));
+        series1.getData().add(new XYChart.Data(10, 689210));
+        series1.getData().add(new XYChart.Data(100, 6372));
+        series1.getData().add(new XYChart.Data(1000, 4810));
+        series1.getData().add(new XYChart.Data(10000, 5035));
+        series1.getData().add(new XYChart.Data(100000, 606));
+
 
         XYChart.Series series2 = new XYChart.Series();
-        series2.setName("Portfolio 2");
-        series2.getData().add(new XYChart.Data("Jan", 33));
-        series2.getData().add(new XYChart.Data("Feb", 34));
-        series2.getData().add(new XYChart.Data("Mar", 25));
-        series2.getData().add(new XYChart.Data("Apr", 44));
-        series2.getData().add(new XYChart.Data("May", 39));
-        series2.getData().add(new XYChart.Data("Jun", 16));
-        series2.getData().add(new XYChart.Data("Jul", 55));
-        series2.getData().add(new XYChart.Data("Aug", 54));
-        series2.getData().add(new XYChart.Data("Sep", 48));
-        series2.getData().add(new XYChart.Data("Oct", 27));
-        series2.getData().add(new XYChart.Data("Nov", 37));
-        series2.getData().add(new XYChart.Data("Dec", 29));
+        series2.setName("ArrayList/среднее время добавления");
+        series2.getData().add(new XYChart.Data(10, 15399));
+        series2.getData().add(new XYChart.Data(100, 683));
+        series2.getData().add(new XYChart.Data(1000, 627));
+        series2.getData().add(new XYChart.Data(10000, 380));
+        series2.getData().add(new XYChart.Data(100000, 418));
+
 
         XYChart.Series series3 = new XYChart.Series();
-        series3.setName("Portfolio 3");
-        series3.getData().add(new XYChart.Data("Jan", 44));
-        series3.getData().add(new XYChart.Data("Feb", 35));
-        series3.getData().add(new XYChart.Data("Mar", 36));
-        series3.getData().add(new XYChart.Data("Apr", 33));
-        series3.getData().add(new XYChart.Data("May", 31));
-        series3.getData().add(new XYChart.Data("Jun", 26));
-        series3.getData().add(new XYChart.Data("Jul", 22));
-        series3.getData().add(new XYChart.Data("Aug", 25));
-        series3.getData().add(new XYChart.Data("Sep", 43));
-        series3.getData().add(new XYChart.Data("Oct", 44));
-        series3.getData().add(new XYChart.Data("Nov", 45));
-        series3.getData().add(new XYChart.Data("Dec", 44));
+        series3.setName("HashMap/среднее время удаления");
+        series3.getData().add(new XYChart.Data(10, 22200));
+        series3.getData().add(new XYChart.Data(100, 7270));
+        series3.getData().add(new XYChart.Data(1000, 4810));
+        series3.getData().add(new XYChart.Data(10000, 5035));
+        series3.getData().add(new XYChart.Data(100000, 9550));
 
+        XYChart.Series series4 = new XYChart.Series();
+        series4.setName("ArrayList/среднее время удаления");
+        series4.getData().add(new XYChart.Data(10, 186300));
+        series4.getData().add(new XYChart.Data(100, 4769));
+        series4.getData().add(new XYChart.Data(1000, 28119));
+        series4.getData().add(new XYChart.Data(10000, 26258));
+        series4.getData().add(new XYChart.Data(100000, 120603));
+
+        XYChart.Series series5 = new XYChart.Series();
+        series5.setName("HashMap/общее время удаления");
+        series5.getData().add(new XYChart.Data(10, 22200));
+        series5.getData().add(new XYChart.Data(100, 72700));
+        series5.getData().add(new XYChart.Data(1000, 481099));
+        series5.getData().add(new XYChart.Data(10000, 5035400));
+        series5.getData().add(new XYChart.Data(100000, 95507600));
+
+        XYChart.Series series6 = new XYChart.Series();
+        series6.setName("ArrayList/общее время удаления");
+        series6.getData().add(new XYChart.Data(10, 186300));
+        series6.getData().add(new XYChart.Data(100, 47699));
+        series6.getData().add(new XYChart.Data(1000, 2811999));
+        series6.getData().add(new XYChart.Data(10000, 26258400));
+        series6.getData().add(new XYChart.Data(100000, 1206035500));
+
+        XYChart.Series series7 = new XYChart.Series();
+        series7.setName("HashMap/общее время добавления");
+        series7.getData().add(new XYChart.Data(10, 6892100));
+        series7.getData().add(new XYChart.Data(100, 637200));
+        series7.getData().add(new XYChart.Data(1000, 3791200));
+        series7.getData().add(new XYChart.Data(10000, 11183900));
+        series7.getData().add(new XYChart.Data(100000, 60635200));
+
+        XYChart.Series series8 = new XYChart.Series();
+        series8.setName("ArrayList/общее время добавления");
+        series8.getData().add(new XYChart.Data(10, 153999));
+        series8.getData().add(new XYChart.Data(100, 68300));
+        series8.getData().add(new XYChart.Data(1000, 627601));
+        series8.getData().add(new XYChart.Data(10000, 3801799));
+        series8.getData().add(new XYChart.Data(100000, 41892400));
         Scene scene  = new Scene(lineChart,800,600);
-        lineChart.getData().addAll(series1, series2, series3);
+        lineChart.getData().addAll(series1, series2, series3, series4);
 
         stage.setScene(scene);
         stage.show();

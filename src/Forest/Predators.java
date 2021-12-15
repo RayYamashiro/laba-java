@@ -223,7 +223,7 @@ public class Predators extends Animals
         strBuffer.append("removeTotalCount" + " " + total_remove + "\n" );
         strBuffer.append("removeTotalTime " + estimatedTime + "\n");
         //long finish = all_time/total_remove;
-        strBuffer.append("removeMedianTime " + estimatedTime/count + "\n" + "\n");
+        strBuffer.append("removeMedianTime " + estimatedTime/total_remove + "\n" + "\n");
 
         String str10 = ( "Finish program" + " " + date.toString()  + "\n");
 
