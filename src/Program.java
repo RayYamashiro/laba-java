@@ -52,18 +52,20 @@ public class Program
         //System.out.println(user.toString());
 
          */
-        // для Hashmap
-        p.Laba4(10);
-        p.Laba4(100);
-        p.Laba4(1000);
-        p.Laba4(10000);
-        p.Laba4(100000);
 
-        g.Laba4_list(10);
-        g.Laba4_list(100);
-        g.Laba4_list(1000);
-        g.Laba4_list(10000);
-        g.Laba4_list(100000);
+        // для Hashmap
+//        p.Laba4(10);
+//        p.Laba4(100);
+//        p.Laba4(1000);
+//        p.Laba4(10000);
+//        p.Laba4(100000);
+//        // для ArrayList
+//        g.Laba4_list(10);
+//        g.Laba4_list(100);
+//        g.Laba4_list(1000);
+//        g.Laba4_list(10000);
+//        g.Laba4_list(100000);
+
 
     }
 }

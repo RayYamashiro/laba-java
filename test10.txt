@@ -1,22 +1,22 @@
-Start program Sun Dec 05 12:45:15 MSK 2021
+Start program Wed Dec 08 14:45:29 MSK 2021
 HashMap
-add ID = 0, 49633
-add ID = 1, 957571
-add ID = 2, 132085
-add ID = 3, 830452
-add ID = 4, 510673
-add ID = 5, 243892
-add ID = 6, 144156
-add ID = 7, 707260
-add ID = 8, 535038
-add ID = 9, 568886
+add ID = 0, 492208
+add ID = 1, 473455
+add ID = 2, 183605
+add ID = 3, 777969
+add ID = 4, 936986
+add ID = 5, 795994
+add ID = 6, 446653
+add ID = 7, 69843
+add ID = 8, 133368
+add ID = 9, 58093
 addTotalCount 10
-addTotalTime 5750700
-addMedianTime 5168080
+addTotalTime 6595400
+addMedianTime 659540
 
-remove ID = 4, 510673
+remove ID = 8, 133368
 removeTotalCount 1
-removeTotalTime 13500
-removeMedianTime 1350
+removeTotalTime 18600
+removeMedianTime 1860
 
-Finish program Sun Dec 05 12:45:15 MSK 2021
+Finish program Wed Dec 08 14:45:29 MSK 2021
