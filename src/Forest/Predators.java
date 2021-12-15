@@ -175,30 +175,35 @@ public class Predators extends Animals
         StringBuffer strBuffer = new StringBuffer(str);
         String str0 = ( "Start program" + " " + date.toString()  + "\n" + "HashMap" + "\n" );
         strBuffer.append(str0);
-        long startTime = System.nanoTime();
+
         int total_count = count;
         //ong all_time = 0;
         long estimatedTime = 0;
+        long totalTime = 0;
         for(int i =0 ; i < total_count ; i++)
         {
+
             int temp_number = (int) (Math.random()*1000000);
+            estimatedTime = System.nanoTime();
             p.getPredators().put(i , temp_number);
             //long av = System.nanoTime() - startTime;
             //all_time += av;
-            estimatedTime = System.nanoTime() - startTime;
-            String str2 = str + "add ID = " + i  + ", " + p.getPredators().get(i) + "\n" ;
+            estimatedTime = System.nanoTime() - estimatedTime;
+            totalTime = totalTime + estimatedTime;
+            String str2 = str + "add ID = " + i  + ", " + estimatedTime + "\n" ;
             strBuffer.append(str2);
         }
 
-
+        //long tot = System.nanoTime() - estimatedTime;
         strBuffer.append("addTotalCount" + " " + total_count + "\n" );
-        strBuffer.append("addTotalTime " + estimatedTime + "\n");
-        long finish1 = estimatedTime/total_count;
+        strBuffer.append("addTotalTime " + totalTime + "\n");
+        long finish1 = totalTime/total_count;
         strBuffer.append( "addMedianTime " + finish1 + "\n" + "\n");
         //all_time = 0;
         estimatedTime = 0;
-        startTime = System.nanoTime();
+
         int total_remove = (int) total_count / 10;
+        long totalTime1 = 0;
         for(int i =0 ; i < total_remove; i++)
         {
 
@@ -210,20 +215,22 @@ public class Predators extends Animals
                 continue;
             }
             same_number.add(temp_number);
-            //long avm = System.nanoTime() - startTime;
+            estimatedTime = System.nanoTime();
             int id = (int) p.getPredators().get(temp_number);
             p.getPredators().remove(temp_number);
             //long av = System.nanoTime() - startTime ;
             //all_time += av;
-            estimatedTime = System.nanoTime() - startTime;
-            String str2 = str + "remove ID = " + temp_number  + ", " + id + "\n" ;
+            estimatedTime = System.nanoTime() - estimatedTime;
+            totalTime1 = totalTime1 + estimatedTime;
+            String str2 = str + "remove ID = " + temp_number  + ", " + estimatedTime + "\n" ;
             strBuffer.append(str2);
         }
+         //long tot1 = System.nanoTime() - totalTime1;
         //estimatedTime = System.nanoTime() - startTime;
         strBuffer.append("removeTotalCount" + " " + total_remove + "\n" );
-        strBuffer.append("removeTotalTime " + estimatedTime + "\n");
+        strBuffer.append("removeTotalTime " + totalTime1 + "\n");
         //long finish = all_time/total_remove;
-        strBuffer.append("removeMedianTime " + estimatedTime/total_remove + "\n" + "\n");
+        strBuffer.append("removeMedianTime " + totalTime1/total_remove + "\n" + "\n");
 
         String str10 = ( "Finish program" + " " + date.toString()  + "\n");
 
