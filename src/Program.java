@@ -18,7 +18,7 @@ public class Program extends Application
 {
     public static void main (String [] args)
     {
-
+        launch(args);
 //        Prog a = new Prog();
 //        Logs logs = new Logs();
 //        Settings s = new Settings();
@@ -30,8 +30,6 @@ public class Program extends Application
 //        Trees t = new Trees();
 
 
-
-        launch(args);
 
 
         /*
